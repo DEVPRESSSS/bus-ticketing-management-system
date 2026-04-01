@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - HMS</title>
+        <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+    </head>
+    <body class="min-h-screen bg-gray-50 flex flex-col">
+
+        <!-- Navbar -->
+        <header class="bg-white m-5  border-b-4 border-teal-600 shadow-sm sticky top-0 z-50 rounded-lg">
+            <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+
+                    <!-- Brand -->
+                    <a asp-area="" asp-controller="Home" asp-action="Index"
+                       class="font-mona text-xl font-bold text-teal-600 tracking-wide hover:text-teal-900 transition-colors">
+                        BUS TICKETING SYSTEM
+                    </a>
+
+                    <!-- Desktop Nav Links -->
+                    <div class="hidden sm:flex items-center gap-6">
+                        <a asp-area="" asp-controller="Home" asp-action="Index"
+                               class="font-mona text-sm fw-bold font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                            Home
+                        </a>
+                        <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                               class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                            Services
+                        </a>
+                        <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                               class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                            Pricing
+                        </a>
+                        <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                               class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                            About Us
+                        </a>
+                    </div>
+
+                    <!-- Mobile Hamburger -->
+                    <button id="menuToggle"
+                            class="sm:hidden p-2 rounded-md text-gray-500 hover:text-blue-700 hover:bg-gray-100 transition"
+                            aria-label="Toggle navigation">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobileMenu" class="hidden sm:hidden pb-4 flex flex-col gap-2">
+                    <a asp-area="" asp-controller="Home" asp-action="Index"
+                           class="block px-3 py-2 rounded-md text-sm text-center font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition">
+                        Home
+                    </a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                           class="text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                        Services
+                    </a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                           class="text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                        Pricing
+                    </a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                           class="text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                        About Us
+                    </a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                           class="block px-3 py-2 rounded-md text-sm font-medium text-center text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition">
+                        Login
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            @RenderBody()
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-teal-600 border-t border-gray-200 mt-auto">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-sm text-white text-center">
+                &copy;Devpress_101 2026 - HMS &mdash;
+                <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                   class="text-blue-600 hover:underline text-white">Privacy</a>
+            </div>
+        </footer>
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+        <!-- Mobile menu toggle -->
+        <script>
+                document.getElementById('menuToggle').addEventListener('click', function() {
+                    const menu = document.getElementById('mobileMenu');
+                    menu.classList.toggle('hidden');
+                });
+        </script>
+
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>
