@@ -9,6 +9,8 @@ namespace BTS.Models
         [Key]
         public string? BusId { get; set; } = $"BUS-{Guid.NewGuid().ToString().Substring(0, 5)}";
         [Required]
+        public string? BusName { get; set; }
+        [Required]
         public string? BusNumber { get; set; }
         [Required]
         public string? PlateNumber { get; set; }

@@ -12,14 +12,14 @@ namespace BTS.Data
         }
         DbSet<ApplicationUser> Users { get; set; }
 
-        DbSet<Stations> Stations { get; set; }
-        DbSet<BusType> BusType { get; set; }
-        DbSet<BusCompanies> BusCompanies { get; set; }
-        DbSet<Buses> Buses { get; set; }
-        DbSet<Seats> Seats { get; set; }
-        DbSet<BusRoutes> BusRoutes { get; set; }
-        DbSet<Schedules> Schedules { get; set; }
-        DbSet<Tickets> Tickets { get; set; }
+        public DbSet<Stations> Stations { get; set; }
+        public DbSet<BusType> BusType { get; set; }
+        public DbSet<BusCompanies> BusCompanies { get; set; }
+        public DbSet<Buses> Buses { get; set; }
+        public DbSet<Seats> Seats { get; set; }
+        public DbSet<BusRoutes> BusRoutes { get; set; }
+        public DbSet<Schedules> Schedules { get; set; }
+        public DbSet<Tickets> Tickets { get; set; }
       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -97,7 +97,54 @@ namespace BTS.Data
                 .HasOne(t => t.ApplicationUser)
                 .WithMany()
                 .HasForeignKey(t => t.UserId)
-                .OnDelete(DeleteBehavior.NoAction);  
+                .OnDelete(DeleteBehavior.NoAction);
+            #endregion
+
+            #region--Seeders
+                
+                modelBuilder.Entity<BusCompanies>().HasData(
+                    new BusCompanies
+                    {
+                        BusCompanyId = "BUSCOMPANY-07d79", 
+                        CompanyName = "BALIWAG",
+                        Address = "Manila, Recto",
+                        ContactNumber = "09488749263",
+                        Email = "incs@gmail.com",
+                        CreatedAt = new DateTime(2026, 4, 2, 22, 4, 37)  
+                    },
+                    new BusCompanies
+                    {
+                        BusCompanyId = "BUSCOMPANY-37995",  
+                        CompanyName = "INC",
+                        Address = "Manila, Recto Station",
+                        ContactNumber = "09488549263",
+                        Email = "inc@gmail.com",
+                        CreatedAt = new DateTime(2026, 4, 2, 22, 4, 37) 
+                    }
+                );
+
+
+                modelBuilder.Entity<BusType>().HasData(
+                      new BusType
+                      {
+                          BusTypeId = "BUSCOMPANY-07d79",
+                          BusTypeName = "AIR CONDITIONED",
+                        
+                          CreatedAt = new DateTime(2026, 4, 2, 22, 4, 37)
+                      },
+                      new BusType
+                      {
+                          BusTypeId = "BUSCOMPANY-07d78",
+                          BusTypeName = "ORDINARY/REGULAR",
+                          CreatedAt = new DateTime(2026, 4, 2, 22, 4, 37)
+                      },
+                      new BusType
+                      {
+                             BusTypeId = "BUSCOMPANY-07d77",
+                             BusTypeName = "DELUXE",
+                             CreatedAt = new DateTime(2026, 4, 2, 22, 4, 37)
+                      }
+                );
             #endregion
 
         }

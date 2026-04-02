@@ -21,9 +21,13 @@
 
                     <!-- Desktop Nav Links -->
                     <div class="hidden sm:flex items-center gap-6">
-                        <a asp-area="" asp-controller="Home" asp-action="Index"
+                        <a asp-area="Customer" asp-controller="Home" asp-action="Index"
                                class="font-mona text-sm fw-bold font-medium text-gray-600 hover:text-blue-700 transition-colors">
                             Home
+                        </a>
+                    <a asp-area="Admin" asp-controller="Bus" asp-action="Index"
+                               class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                            Bus
                         </a>
                         <a asp-area="" asp-controller="Home" asp-action="Privacy"
                                class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">

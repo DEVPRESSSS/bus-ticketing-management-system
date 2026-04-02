@@ -1,0 +1,99 @@
+﻿@model Buses
+<div class="shadow-sm w-full p-2 rounded-lg mt-4">
+    <!--Header-->
+    <div class="p-2 flex flex-col sm:flex-row">
+        <div class="flex flex-1 content-center">
+            <h3 class="text-teal-600 font-mona font-bold p-2">Register new bus</h3>
+        </div>
+        <div class="flex flex-1 justify-center sm:justify-end">
+            <a class="bg-white font-mona border p-2 rounded-lg border-gray-200 text-teal-600 font-bold"
+               asp-controller="Bus" asp-action="Index">Back</a>
+        </div>
+    </div>
+
+    <!--Divider-->
+    <div class="border-b border-gray-200 w-full"></div>
+
+    <!--Body-->
+    <form method="post">
+        <div class="flex flex-col sm:flex-row gap-4 p-4">
+
+            <input asp-for="BusId" hidden />
+            <!--First Column-->
+            <div class="flex flex-col flex-1 gap-4">
+                <!-- Bus Name -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="BusName" class="text-sm font-semibold text-gray-600 font-mona"> Bus Name <span class="text-red-500">*</span></label>
+                    <input asp-for="BusName" placeholder="e.g. Bus 101"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="BusName" class="text-red-500 text-xs"></span>
+                </div>
+
+                <!-- Bus Number -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="BusNumber" class="text-sm font-semibold text-gray-600 font-mona">Bus Number <span class="text-red-500">*</span></label>
+                    <input asp-for="BusNumber" placeholder="e.g. Bus 101"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="BusNumber" class="text-red-500 text-xs"></span>
+                </div>
+
+                <!-- Plate Number -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="PlateNumber" class="text-sm font-semibold text-gray-600 font-mona">Plate Number <span class="text-red-500">*</span></label>
+                    <input asp-for="PlateNumber" placeholder="e.g. ABC-1234"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="PlateNumber" class="text-red-500 text-xs"></span>
+                </div>
+
+            </div>
+
+            <!--Second Column-->
+            <div class="flex flex-col flex-1 gap-4">
+
+                <!-- Bus Type -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="BusTypeId" class="text-sm font-semibold text-gray-600 font-mona">Bus Type <span class="text-red-500">*</span></label>
+                    <select asp-for="BusTypeId" asp-items="ViewBag.BusTypes"
+                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white">
+                        <option value="">-- Select Bus Type --</option>
+                    </select>
+                    <span asp-validation-for="BusTypeId" class="text-red-500 text-xs"></span>
+                </div>
+
+                <!-- Total Seats -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="TotalSeats" class="text-sm font-semibold text-gray-600 font-mona">Total Seats <span class="text-red-500">*</span></label>
+                    <input asp-for="TotalSeats" type="number" min="1" placeholder="e.g. 50"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="TotalSeats" class="text-red-500 text-xs"></span>
+                </div>
+
+                <!-- Bus Company -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="BusCompanyId" class="text-sm font-semibold text-gray-600 font-mona">Bus Company <span class="text-red-500">*</span></label>
+                    <select asp-for="BusCompanyId" asp-items="ViewBag.BusCompanies"
+                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white">
+                        <option value="">-- Select Company --</option>
+                    </select>
+                    <span asp-validation-for="BusCompanyId" class="text-red-500 text-xs"></span>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Divider-->
+        <div class="border-b border-gray-200 w-full"></div>
+
+        <!--Footer / Actions-->
+        <div class="flex justify-end gap-2 p-4">
+            <a asp-controller="Bus" asp-action="Index"
+                   class="border border-gray-200 text-gray-600 font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-gray-50">
+                Cancel
+            </a>
+            <button type="submit"
+                    class="bg-teal-600 text-white font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-teal-700">
+                Register Bus
+            </button>
+        </div>
+    </form>
+</div>

@@ -95,6 +95,26 @@ namespace BTS.Migrations
                         .IsUnique();
 
                     b.ToTable("BusCompanies");
+
+                    b.HasData(
+                        new
+                        {
+                            BusCompanyId = "BUSCOMPANY-07d79",
+                            Address = "Manila, Recto",
+                            CompanyName = "BALIWAG",
+                            ContactNumber = "09488749263",
+                            CreatedAt = new DateTime(2026, 4, 2, 22, 4, 37, 0, DateTimeKind.Unspecified),
+                            Email = "incs@gmail.com"
+                        },
+                        new
+                        {
+                            BusCompanyId = "BUSCOMPANY-37995",
+                            Address = "Manila, Recto Station",
+                            CompanyName = "INC",
+                            ContactNumber = "09488549263",
+                            CreatedAt = new DateTime(2026, 4, 2, 22, 4, 37, 0, DateTimeKind.Unspecified),
+                            Email = "inc@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("BTS.Models.BusRoutes", b =>
@@ -151,6 +171,26 @@ namespace BTS.Migrations
                     b.HasKey("BusTypeId");
 
                     b.ToTable("BusType");
+
+                    b.HasData(
+                        new
+                        {
+                            BusTypeId = "BUSCOMPANY-07d79",
+                            BusTypeName = "AIR CONDITIONED",
+                            CreatedAt = new DateTime(2026, 4, 2, 22, 4, 37, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            BusTypeId = "BUSCOMPANY-07d78",
+                            BusTypeName = "ORDINARY/REGULAR",
+                            CreatedAt = new DateTime(2026, 4, 2, 22, 4, 37, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            BusTypeId = "BUSCOMPANY-07d77",
+                            BusTypeName = "DELUXE",
+                            CreatedAt = new DateTime(2026, 4, 2, 22, 4, 37, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("BTS.Models.Buses", b =>
@@ -161,6 +201,10 @@ namespace BTS.Migrations
                     b.Property<string>("BusCompanyId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BusName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BusNumber")
                         .IsRequired()
