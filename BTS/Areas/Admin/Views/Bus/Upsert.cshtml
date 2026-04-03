@@ -82,7 +82,8 @@
         </div>
 
         <!--Divider-->
-        <div class="border-b border-gray-200 w-full"></div>
+      
+        <div class="border-b border-gray-200 w-full">  </div>
 
         <!--Footer / Actions-->
         <div class="flex justify-end gap-2 p-4">
@@ -90,10 +91,13 @@
                    class="border border-gray-200 text-gray-600 font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-gray-50">
                 Cancel
             </a>
-            <button type="submit"
-                    class="bg-teal-600 text-white font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-teal-700">
-                Register Bus
+           
+            <button type="submit" class="bg-teal-600 text-white font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-teal-700">
+                @(string.IsNullOrEmpty(Model?.BusId) ? "Create" : "Update")
             </button>
+              
+              
+
         </div>
     </form>
 </div>

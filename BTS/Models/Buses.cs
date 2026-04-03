@@ -7,7 +7,7 @@ namespace BTS.Models
     public class Buses
     {
         [Key]
-        public string? BusId { get; set; } = $"BUS-{Guid.NewGuid().ToString().Substring(0, 5)}";
+        public string? BusId { get; set; } 
         [Required]
         public string? BusName { get; set; }
         [Required]
@@ -16,7 +16,7 @@ namespace BTS.Models
         public string? PlateNumber { get; set; }
         [Required]
         public string? BusTypeId { get; set; }
-        [ForeignKey(nameof(BusId))]
+        [ForeignKey(nameof(BusTypeId))]
         public BusType? BusType { get; set; }
         [Required]
         public int TotalSeats { get; set; }

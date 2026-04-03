@@ -1,2 +1,107 @@
-﻿<h5 class=" font-mona text-end">Bus List</h5> 
-<a asp-area="Admin" asp-controller="Bus" asp-action="Upsert">Create + </a>
+﻿@model List<Buses>
+<div class="shadow-sm w-full p-2 rounded-lg mt-4">
+    <!--Success mesage-->
+    @if (TempData["success"] != null)
+    {
+        <div id="toast" class="fixed top-5 right-5 z-50 flex items-center gap-3 px-4 py-3 bg-white border border-l-[3px] border-green-500 rounded-lg shadow-sm animate-slide-in max-w-sm">
+            <svg class="w-4 h-4 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="7.25" stroke="currentColor" stroke-width="1.5" />
+                <path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span class="text-sm text-gray-700 font-mona flex-1">@TempData["success"]</span>
+            <button onclick="document.getElementById('toast').remove()" class="text-gray-400 hover:text-gray-600 text-base leading-none">&times;</button>
+        </div>
+    }
+    <!--Header-->
+    <div class="p-2 flex flex-col sm:flex-row">
+        <div class="flex flex-1 content-center">
+            <h3 class="text-teal-600 font-mona font-bold p-2">Buses list</h3>
+        </div>
+        <div class="flex flex-1 justify-center sm:justify-end">
+            <a class="bg-white font-mona border p-2 rounded-lg border-gray-200 text-teal-600 font-bold"
+               asp-controller="Bus" asp-action="Upsert">Create</a>
+        </div>
+
+    </div>
+    <!--Divider-->
+    <div class="border-b border-gray-200 w-full"></div>
+
+    <!--Table-->
+    <div class="w-full overflow-x-auto rounded-lg border border-gray-200">
+        <table class="w-full text-sm font-mona">
+            <!--Head-->
+            <thead class="bg-teal-600 text-white">
+                <tr>
+                    <th class="text-left px-4 py-3 font-semibold">Id</th>
+                    <th class="text-left px-4 py-3 font-semibold">Bus Number</th>
+                    <th class="text-left px-4 py-3 font-semibold">Plate Number</th>
+                    <th class="text-left px-4 py-3 font-semibold">Company</th>
+                    <th class="text-left px-4 py-3 font-semibold">Total Seats</th>
+                    <th class="text-left px-4 py-3 font-semibold">Actions</th>
+                </tr>
+            </thead>
+            <!--Body-->
+            <tbody class="divide-y divide-gray-100">
+                @foreach (var bus in Model)
+                {
+                    <tr class="hover:bg-teal-50 transition-colors">
+                        <td class="px-4 py-3 text-gray-500">@bus.BusId</td>
+                        <td class="px-4 py-3 text-gray-800 font-medium">@bus.BusNumber</td>
+                        <td class="px-4 py-3 text-gray-800">@bus.PlateNumber</td>
+                        <td class="px-4 py-3 text-gray-800">@bus.BusCompany?.CompanyName</td>
+                        <td class="px-4 py-3 text-gray-800">@bus.TotalSeats</td>
+                        <td class="px-4 py-3 flex gap-2">
+                            <a asp-action="Upsert" asp-route-BusId="@bus.BusId"
+                                   class="text-teal-600 border border-teal-600 px-3 py-1 rounded-lg text-xs font-semibold hover:bg-teal-600 hover:text-white transition-colors">
+                                Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-BusId="@bus.BusId" class="text-red-500 border border-red-400 px-3 py-1 rounded-lg text-xs font-semibold hover:bg-red-500 hover:text-white transition-colors">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!--Pagination-->
+        <div class="flex items-center justify-between px-4 py-3 border-t border-gray-200">
+            <p class="text-xs text-gray-500 font-mona">
+                Page @ViewBag.CurrentPage of @ViewBag.TotalPages
+            </p>
+            <div class="flex gap-1">
+                <!--Previous-->
+                @if (ViewBag.CurrentPage > 1)
+                {
+                    <a asp-action="Index" asp-route-page="@(ViewBag.CurrentPage - 1)"
+                           class="px-3 py-1 text-xs font-mona font-semibold border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors">
+                        &larr; Prev
+                    </a>
+                }
+
+                <!--Page Numbers-->
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <a asp-action="Index" asp-route-page="@i"
+                           class="px-3 py-1 text-xs font-mona font-semibold border rounded-lg transition-colors
+                        @(i == ViewBag.CurrentPage
+                                             ? "bg-teal-600 text-white border-teal-600"
+                                             : "border-gray-200 text-gray-600 hover:bg-gray-50")">
+                        @i
+                    </a>
+                }
+
+                <!--Next-->
+                @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                {
+                    <a asp-action="Index" asp-route-page="@(ViewBag.CurrentPage + 1)"
+                           class="px-3 py-1 text-xs font-mona font-semibold border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors">
+                        Next &rarr;
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+
+        
+</div>

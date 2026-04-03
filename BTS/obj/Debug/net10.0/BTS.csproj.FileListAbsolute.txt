@@ -296,4 +296,4 @@ D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.Scripting
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
-D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\ebynz6cjdq-{0}-c26ad4vzdf-c26ad4vzdf.gz
+D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\ebynz6cjdq-{0}-cir9t5liw0-cir9t5liw0.gz

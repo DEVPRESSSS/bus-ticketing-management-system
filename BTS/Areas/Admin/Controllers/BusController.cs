@@ -13,12 +13,20 @@ namespace BTS.Areas.Admin.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 10)
         {
-            //var obj = _unitOfWork.Bus.GetAll().ToList();
-            //if(obj == null)
-            //    return NotFound();
-            return View();
+            var tableCount = _unitOfWork.Bus.GetAll().Count();
+            var obj = _unitOfWork.Bus.GetAll(includeProperties: "BusCompany").
+                Skip((page - 1) * pageSize).
+                Take(pageSize).
+                ToList();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = (int) Math.Ceiling(tableCount / (double)pageSize);
+
+            if (obj == null)
+                return NotFound();
+            return View(obj);
         }
         public IActionResult Upsert(string? BusId)
         {
@@ -28,8 +36,15 @@ namespace BTS.Areas.Admin.Controllers
                     Value= u.BusCompanyId
                 });
             ViewBag.BusCompanies = busCompanies;
-             
-            if(BusId == null)
+
+            var busType = _unitOfWork.BusType.GetAll().Select(u => new SelectListItem
+            {
+                Text = u.BusTypeName,
+                Value = u.BusTypeId
+            });
+            ViewBag.BusTypes = busType;
+
+            if (BusId == null)
             {
                 return View();
             }
@@ -46,7 +61,11 @@ namespace BTS.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 if (string.IsNullOrEmpty(buses.BusId))
+                {
+                    buses.BusId = $"BUS-{Guid.NewGuid().ToString().Substring(0, 5)}";
                     _unitOfWork.Bus.Add(buses);
+                    TempData["success"] = "Bus registered successfully";
+                }
                 else
                     _unitOfWork.Bus.Update(buses);
 
@@ -61,7 +80,32 @@ namespace BTS.Areas.Admin.Controllers
                     Value = u.BusCompanyId
                 });
 
+            var busType = _unitOfWork.BusType.GetAll().Select(u => new SelectListItem
+            {
+                Text = u.BusTypeName,
+                Value = u.BusTypeId
+            });
+
+            ViewBag.BusTypes = busType;
+
             return View(buses);
+        }
+
+        //[HttpDelete]- 
+        public IActionResult Delete(string BusId)
+        {
+            var objDelete = _unitOfWork.Bus.Get(x=>x.BusId == BusId);
+            if (objDelete == null)
+            {
+                TempData["error"] = "Failed to delete, please try again!";
+                return RedirectToAction("Index");
+            }
+               
+            _unitOfWork.Bus.Remove(objDelete);
+            _unitOfWork.Save();
+            TempData["success"] = "Bus deleted successfully";
+
+            return RedirectToAction("Index");
         }
     }
 }

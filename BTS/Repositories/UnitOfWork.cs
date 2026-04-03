@@ -8,11 +8,13 @@ namespace BTS.Repositories
         private ApplicationDbContext _db;
         public IBusRepository Bus { get; private set; }
         public IBusCompanyRepository BusCompany { get; private set; }
+        public IBusTypeRepository BusType { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Bus = new BusRepository(db);
             BusCompany = new BusCompanyRepository(db);
+            BusType = new BusTypeRepository(db);
         }
 
         public void Save()

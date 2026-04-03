@@ -4,6 +4,8 @@
     {
         IBusRepository Bus { get; }
         IBusCompanyRepository BusCompany { get; }
+        IBusTypeRepository BusType { get; }
+     
         void Save();
     }
 }
