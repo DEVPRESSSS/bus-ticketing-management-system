@@ -10,6 +10,8 @@
 
         <!-- Navbar -->
         <header class="bg-white m-5  border-b-4 border-teal-600 shadow-sm sticky top-0 z-50 rounded-lg">
+             <partial name="~/Views/Shared/_Notification.cshtml" />
+
             <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16">
 
@@ -25,9 +27,13 @@
                                class="font-mona text-sm fw-bold font-medium text-gray-600 hover:text-blue-700 transition-colors">
                             Home
                         </a>
-                    <a asp-area="Admin" asp-controller="Bus" asp-action="Index"
+                        <a asp-area="Admin" asp-controller="Bus" asp-action="Index"
                                class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
                             Bus
+                        </a>
+                        <a asp-area="Admin" asp-controller="BusCompany" asp-action="Index"
+                               class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                            BusCompany
                         </a>
                         <a asp-area="" asp-controller="Home" asp-action="Privacy"
                                class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
@@ -103,6 +109,11 @@
                     const menu = document.getElementById('mobileMenu');
                     menu.classList.toggle('hidden');
                 });
+
+                setTimeout(() => {
+                    document.getElementById('toast-success')?.remove();
+                    document.getElementById('toast-error')?.remove();
+                }, 3000);
         </script>
 
         @await RenderSectionAsync("Scripts", required: false)

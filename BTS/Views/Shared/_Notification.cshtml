@@ -1,12 +1,12 @@
 ﻿<!--Success mesage-->
 @if (TempData["success"] != null)
 {
-    <div id="toast" class="fixed top-5 right-5 z-50 flex items-center gap-3 px-4 py-3 bg-white border border-l-[3px] border-green-500 rounded-lg shadow-sm animate-slide-in max-w-sm">
+    <div id="toast-success" class="fixed top-5 right-5 z-50 flex items-center gap-3 px-4 py-3 bg-white border border-l-[3px] border-green-500 rounded-lg shadow-sm animate-slide-in max-w-sm">
         <svg class="w-4 h-4 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none">
             <circle cx="8" cy="8" r="7.25" stroke="currentColor" stroke-width="1.5" />
             <path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-        <span class="text-sm text-gray-700 font-mona flex-1">@TempData["success"]</span>
+        <span id="notif" class="text-sm text-gray-700 font-mona flex-1">@TempData["success"]</span>
         <button onclick="document.getElementById('toast').remove()" class="text-gray-400 hover:text-gray-600 text-base leading-none">&times;</button>
     </div>
 }
@@ -17,10 +17,8 @@
             <circle cx="8" cy="8" r="7.25" stroke="currentColor" stroke-width="1.5" />
             <path d="M8 5v3.5M8 10.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
         </svg>
-        <span class="text-sm text-gray-700 font-mona flex-1">@TempData["error"]</span>
-        <button onclick="document.getElementById('toast-error').remove()" class="text-gray-400 hover:text-gray-600 text-base leading-none">&times;</button>
+        <span  id="notif" class="text-sm text-gray-700 font-mona flex-1">@TempData["error"]</span>
+        <button onclick="document.getElementById('toast').remove()" class="text-gray-400 hover:text-gray-600 text-base leading-none">&times;</button>
     </div>
 }
 
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>

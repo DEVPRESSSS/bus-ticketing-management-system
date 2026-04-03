@@ -3,7 +3,7 @@
     <!--Header-->
     <div class="p-2 flex flex-col sm:flex-row">
         <div class="flex flex-1 content-center">
-            <h3 class="text-teal-600 font-mona font-bold p-2">Register new bus</h3>
+            <h3 class="text-teal-600 font-mona font-bold p-2"> @(Model?.BusId ==null ? "Register new bus" : "Update bus")</h3>
         </div>
         <div class="flex flex-1 justify-center sm:justify-end">
             <a class="bg-white font-mona border p-2 rounded-lg border-gray-200 text-teal-600 font-bold"
@@ -101,3 +101,17 @@
         </div>
     </form>
 </div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if (TempData["error"] != null && string.IsNullOrEmpty(Model.BusId))
+                {
+                    <text>
+                        document.querySelectorAll("input, select, textarea").forEach(el => {
+                            el.value = "";
+                        });
+                </text>
+            }
+                        });
+    </script>
+}

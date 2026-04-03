@@ -3,6 +3,7 @@ using BTS.Repositories;
 using BTS.Repositories.IRepositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BTS.Areas.Admin.Controllers
 {
@@ -58,6 +59,35 @@ namespace BTS.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Upsert(Buses buses)
         {
+
+            var plateNumberExists = _unitOfWork.Bus.Get(x => x.PlateNumber == buses.PlateNumber && x.BusId != buses.BusId);
+            var busNumberExists = _unitOfWork.Bus.Get(x => x.BusNumber == buses.BusNumber && x.BusId != buses.BusId);
+
+            var errors = new List<string>();
+
+            if (plateNumberExists != null) errors.Add("Plate number");
+            if (busNumberExists != null) errors.Add("Bus number");
+
+            if (errors.Any())
+            {
+                TempData["error"] = $"{string.Join(" and ", errors)} already exists.";
+
+                ViewBag.BusCompanies = _unitOfWork.BusCompany.GetAll()
+                .Select(u => new SelectListItem
+                {
+                    Text = u.CompanyName,
+                    Value = u.BusCompanyId
+                });
+
+                ViewBag.BusTypes = _unitOfWork.BusType.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.BusTypeName,
+                    Value = u.BusTypeId
+                });
+
+                return View(buses);
+            }
+
             if (ModelState.IsValid)
             {
                 if (string.IsNullOrEmpty(buses.BusId))
@@ -80,13 +110,13 @@ namespace BTS.Areas.Admin.Controllers
                     Value = u.BusCompanyId
                 });
 
-            var busType = _unitOfWork.BusType.GetAll().Select(u => new SelectListItem
+            ViewBag.BusTypes = _unitOfWork.BusType.GetAll().Select(u => new SelectListItem
             {
                 Text = u.BusTypeName,
                 Value = u.BusTypeId
             });
 
-            ViewBag.BusTypes = busType;
+         
 
             return View(buses);
         }
