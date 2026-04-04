@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BTS.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="flex items-center justify-end gap-6">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li>
+            <a id="manage"
+                   class="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 transition-colors"
+                   asp-area="Identity"
+                   asp-page="/Account/Manage/Index"
+                   title="Manage">
+                Hello @UserManager.GetUserName(User)!
+            </a>
+        </li>
+        <li>
+            <form id="logoutForm"
+                  class="flex items-center"
+                  asp-area="Identity"
+                  asp-page="/Account/Logout"
+                  asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout"
+                        type="submit"
+                        class="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 bg-transparent border-0 cursor-pointer transition-colors">
+                    Logout
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a id="register"
+                   class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors"
+                   asp-area="Identity"
+                   asp-page="/Account/Register">
+                Register
+            </a>
+        </li>
+        <li>
+            <a id="login"
+                   class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors"
+                   asp-area="Identity"
+                   asp-page="/Account/Login">
+                Login
+            </a>
+        </li>
+    }
+</ul>

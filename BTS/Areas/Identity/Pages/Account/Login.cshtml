@@ -1,0 +1,170 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="bg-gray-50 flex items-center justify-center px-4 mt-10 ">
+    <div class="w-full max-w-3xl grid grid-cols-1 lg:grid-cols-2 shadow-sm rounded-2xl overflow-hidden">
+
+        <div class="relative hidden lg:flex flex-col justify-between bg-teal-600 p-8 overflow-hidden">
+            <div class="absolute inset-0 opacity-10"
+                 style="background-image: repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%); background-size: 20px 20px;">
+            </div>
+
+            <div class="relative z-10">
+                <div class="flex items-center gap-2 mb-12">
+                    <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                        </svg>
+                    </div>
+                    <span class="text-white font-bold text-lg tracking-tight">BTS</span>
+                </div>
+
+                <h2 class="text-white text-2xl font-extrabold leading-tight mb-2">
+                    Your journey<br />starts here.
+                </h2>
+                <p class="text-teal-100 text-xs leading-relaxed max-w-xs">
+                    Book tickets, track buses, and manage your trips — all in one place.
+                </p>
+            </div>
+
+            <div class="relative z-10 bg-white/10 rounded-xl p-4">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+                    <span class="text-teal-100 text-xs font-semibold uppercase tracking-widest">Next Departure</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-white font-bold text-sm">Manila → Cebu</p>
+                        <p class="text-teal-200 text-xs mt-0.5">Bus 04 · 3 seats left</p>
+                    </div>
+                    <span class="bg-white text-teal-600 text-xs font-bold px-2.5 py-1 rounded-lg">6:30 AM</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-8 flex flex-col justify-center">
+
+            <div class="lg:hidden flex items-center gap-2 mb-6">
+                <div class="w-7 h-7 bg-teal-600 rounded-md flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                </div>
+                <span class="text-gray-800 font-bold text-base">BTS</span>
+            </div>
+
+            <h1 class="text-gray-900 text-xl font-bold mb-0.5">Welcome back</h1>
+            <p class="text-gray-500 text-xs mb-6">Sign in to your account to continue</p>
+
+            <form id="account" method="post" class="flex flex-col gap-3">
+                <div asp-validation-summary="ModelOnly"
+                     class="text-red-600 text-xs bg-red-50 border border-red-200 rounded-lg px-3 py-2"
+                     role="alert">
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label asp-for="Input.Email"
+                           class="text-gray-600 text-xs font-semibold uppercase tracking-wider">
+                        Email Address
+                    </label>
+                    <input asp-for="Input.Email"
+                           class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent placeholder-gray-400 transition"
+                           autocomplete="username"
+                           aria-required="true"
+                           placeholder="you@example.com" />
+                    <span asp-validation-for="Input.Email" class="text-red-500 text-xs"></span>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <div class="flex items-center justify-between">
+                        <label asp-for="Input.Password"
+                               class="text-gray-600 text-xs font-semibold uppercase tracking-wider">
+                            Password
+                        </label>
+                        <a id="forgot-password"
+                               asp-page="./ForgotPassword"
+                               class="text-teal-600 hover:text-teal-500 text-xs transition-colors">
+                            Forgot password?
+                        </a>
+                    </div>
+                    <input asp-for="Input.Password"
+                           class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent placeholder-gray-400 transition"
+                           autocomplete="current-password"
+                           aria-required="true"
+                           placeholder="••••••••" />
+                    <span asp-validation-for="Input.Password" class="text-red-500 text-xs"></span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <input asp-for="Input.RememberMe"
+                           class="w-3.5 h-3.5 rounded accent-teal-600 cursor-pointer" />
+                    <label asp-for="Input.RememberMe" class="text-gray-500 text-xs cursor-pointer">
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+
+                <button id="login-submit"
+                        type="submit"
+                        class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm py-2.5 rounded-lg transition-colors">
+                    Sign In
+                </button>
+
+                <p class="text-center text-gray-500 text-xs">
+                    Don't have an account?
+                    <a asp-page="./Register"
+                           asp-route-returnUrl="@Model.ReturnUrl"
+                           class="text-teal-600 hover:text-teal-500 font-medium transition-colors">
+                        Register
+                    </a>
+                </p>
+
+                <p class="text-center">
+                    <a id="resend-confirmation"
+                           asp-page="./ResendEmailConfirmation"
+                           class="text-gray-400 hover:text-gray-600 text-xs transition-colors">
+                        Resend email confirmation
+                    </a>
+                </p>
+            </form>
+
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) > 0)
+                {
+                    <div class="flex items-center gap-3 my-4">
+                        <div class="flex-1 h-px bg-gray-200"></div>
+                        <span class="text-gray-400 text-xs uppercase tracking-widest">or continue with</span>
+                        <div class="flex-1 h-px bg-gray-200"></div>
+                    </div>
+
+                    <form id="external-account"
+                          asp-page="./ExternalLogin"
+                          asp-route-returnUrl="@Model.ReturnUrl"
+                          method="post">
+                        <div class="flex flex-wrap gap-2">
+                            @foreach (var provider in Model.ExternalLogins!)
+                            {
+                                <button type="submit"
+                                        class="flex-1 border border-gray-300 hover:border-teal-500 hover:text-teal-600 text-gray-600 text-xs font-medium py-2 rounded-lg transition-colors"
+                                        name="provider"
+                                        value="@provider.Name"
+                                        title="Log in using your @provider.DisplayName account">
+                                    @provider.DisplayName
+                                </button>
+                            }
+                        </div>
+                    </form>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,10 +17,13 @@ namespace BTS.Models
         public string? PlateNumber { get; set; }
         [Required]
         public string? BusTypeId { get; set; }
+
         [ForeignKey(nameof(BusTypeId))]
         public BusType? BusType { get; set; }
         [Required]
         public int TotalSeats { get; set; }
+        [Precision(18, 2)]
+        public decimal? PricePerKm { get; set; }
         [Required]
         public string? BusCompanyId { get; set; }
         [ForeignKey(nameof(BusCompanyId))]

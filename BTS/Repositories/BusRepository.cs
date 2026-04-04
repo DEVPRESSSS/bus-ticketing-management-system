@@ -19,6 +19,8 @@ namespace BTS.Repositories
             if (obj != null) {
             
                 obj.BusNumber = buses.BusNumber;
+                obj.BusName = buses.BusName;
+                obj.PricePerKm = buses.PricePerKm;
                 obj.PlateNumber = buses.PlateNumber;
                 obj.TotalSeats = buses.TotalSeats;
                 obj.BusTypeId = buses.BusTypeId;

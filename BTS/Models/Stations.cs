@@ -6,7 +6,7 @@ namespace BTS.Models
     public class Stations
     {
         [Key]
-        public string StationId { get; set; } = $"STATION-{Guid.NewGuid().ToString().Substring(0, 5)}";
+        public string? StationId { get; set; }
         [Required]
         [MaxLength(40)]
         public string? StationName { get; set; }

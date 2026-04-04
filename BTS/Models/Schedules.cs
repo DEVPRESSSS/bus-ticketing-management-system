@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BTS.Models
@@ -6,7 +7,7 @@ namespace BTS.Models
     public class Schedules
     {
         [Key]
-        public string ScheduleId { get; set; } = $"SCHED-{Guid.NewGuid().ToString().Substring(0, 5)}";
+        public string? ScheduleId { get; set; } 
         [Required]
         public string? RouteId { get; set; }
         [ForeignKey(nameof(RouteId))]
@@ -19,6 +20,7 @@ namespace BTS.Models
         public DateTime DepartureTime { get; set; }
         [Required]
         public DateTime ArrivalTime { get; set; }
+
         public string? Status { get; set; }
         public int? AvailableSeats { get; set; }
         public DateTime? CreatedAt { get; set; } = DateTime.Now;

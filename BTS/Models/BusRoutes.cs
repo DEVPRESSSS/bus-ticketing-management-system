@@ -26,9 +26,10 @@ namespace BTS.Models
         [Required]
         [Precision(10, 2)]
         public decimal? DistanceKM { get; set; }
+  
         [Required]
         public int? EstimatedTime { get; set; }
-        public bool? IsActive { get; set; }
+        public bool? IsActive { get; set; } = false;
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
     }
 }

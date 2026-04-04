@@ -1,0 +1,112 @@
+﻿@model Stations
+<div class="shadow-sm w-full p-2 rounded-lg mt-4">
+    <!--Header-->
+    <div class="p-2 flex flex-col sm:flex-row">
+        <div class="flex flex-1 content-center">
+            <h3 class="text-teal-600 font-mona font-bold p-2"> @(Model?.StationId == null ? "Register new station" : "Update bus station")</h3>
+        </div>
+        <div class="flex flex-1 justify-center sm:justify-end">
+            <a class="bg-white font-mona border p-2 rounded-lg border-gray-200 text-teal-600 font-bold"
+               asp-controller="Station" asp-action="Index">Back</a>
+        </div>
+    </div>
+
+    <!--Divider-->
+    <div class="border-b border-gray-200 w-full"></div>
+
+    <!--Body-->
+    <form method="post">
+        <div class="flex flex-col sm:flex-row gap-4 p-4">
+
+            <input asp-for="StationId" hidden />
+            <!--First Column-->
+            <div class="flex flex-col flex-1 gap-4">
+                <!-- Station name -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="StationName" class="text-sm font-semibold text-gray-600 font-mona"> Station Name <span class="text-red-500">*</span></label>
+                    <input asp-for="StationName" placeholder="e.g. Bus 101"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="StationName" class="text-red-500 text-xs"></span>
+                </div>
+
+                <!-- City Class -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="City" class="text-sm font-semibold text-gray-600 font-mona">City <span class="text-red-500">*</span></label>
+                    <input asp-for="City" placeholder="e.g. Bus 101"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="City" class="text-red-500 text-xs"></span>
+                </div>
+
+                <!-- Province -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="Province" class="text-sm font-semibold text-gray-600 font-mona">Province <span class="text-red-500">*</span></label>
+                    <input asp-for="Province" placeholder="e.g. Bus 101"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="Province" class="text-red-500 text-xs"></span>
+                </div>
+
+            </div>
+
+            <!--Second Column-->
+            <div class="flex flex-col flex-1 gap-4">
+             
+                <!-- Addresss -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="Addresss" class="text-sm font-semibold text-gray-600 font-mona">Addresss <span class="text-red-500">*</span></label>
+                    <input asp-for="Addresss" placeholder="e.g. Bus 101"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="Addresss" class="text-red-500 text-xs"></span>
+                </div>
+                <!-- latitude -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="Latitude" class="text-sm font-semibold text-gray-600 font-mona">Latitude <span class="text-red-500">*</span></label>
+                    <input asp-for="Latitude" placeholder="e.g. Bus 101"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="Latitude" class="text-red-500 text-xs"></span>
+                </div>
+
+                <!-- Longitude -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="Longitude" class="text-sm font-semibold text-gray-600 font-mona">Latitude <span class="text-red-500">*</span></label>
+                    <input asp-for="Longitude" placeholder="e.g. Bus 101"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="Longitude" class="text-red-500 text-xs"></span>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Divider-->
+      
+        <div class="border-b border-gray-200 w-full">  </div>
+
+        <!--Footer / Actions-->
+        <div class="flex justify-end gap-2 p-4">
+            <a asp-controller="Bus" asp-action="Index"
+                   class="border border-gray-200 text-gray-600 font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-gray-50">
+                Cancel
+            </a>
+           
+            <button type="submit" class="bg-teal-600 text-white font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-teal-700">
+                @(string.IsNullOrEmpty(Model?.StationId) ? "Create" : "Update")
+            </button>
+              
+              
+
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if (TempData["error"] != null && string.IsNullOrEmpty(Model?.StationId))
+                {
+                    <text>
+                        document.querySelectorAll("input, select, textarea").forEach(el => {
+                            el.value = "";
+                        });
+                </text>
+            }
+            });
+    </script>
+}

@@ -1,16 +1,20 @@
 ﻿using BTS.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 using System.Net.Sockets;
 
 namespace BTS.Data
 {
-    public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext: IdentityDbContext<ApplicationUser>
+
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
             
         }
-        DbSet<ApplicationUser> Users { get; set; }
+        //public DbSet<ApplicationUser> Users { get; set; }
 
         public DbSet<Stations> Stations { get; set; }
         public DbSet<BusType> BusType { get; set; }
@@ -23,6 +27,11 @@ namespace BTS.Data
       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            
+            modelBuilder.Entity<IdentityPasskeyData>().HasNoKey();
+
             #region--Stations
             modelBuilder.Entity<Stations>()
                 .HasIndex(s => s.StationName)

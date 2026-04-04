@@ -1,0 +1,92 @@
+﻿@model Seats
+<div class="shadow-sm w-full p-2 rounded-lg mt-4">
+    <!--Header-->
+    <div class="p-2 flex flex-col sm:flex-row">
+        <div class="flex flex-1 content-center">
+            <h3 class="text-teal-600 font-mona font-bold p-2"> @(Model?.BusId ==null ? "Register new seat" : "Update bus seat")</h3>
+        </div>
+        <div class="flex flex-1 justify-center sm:justify-end">
+            <a class="bg-white font-mona border p-2 rounded-lg border-gray-200 text-teal-600 font-bold"
+               asp-controller="Bus" asp-action="Index">Back</a>
+        </div>
+    </div>
+
+    <!--Divider-->
+    <div class="border-b border-gray-200 w-full"></div>
+
+    <!--Body-->
+    <form method="post">
+        <div class="flex flex-col sm:flex-row gap-4 p-4">
+
+            <input asp-for="SeatId" hidden />
+            <!--First Column-->
+            <div class="flex flex-col flex-1 gap-4">
+                <!-- Seat Number -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="SeatNumber" class="text-sm font-semibold text-gray-600 font-mona"> Seat Number <span class="text-red-500">*</span></label>
+                    <input asp-for="SeatNumber" placeholder="e.g. Bus 101"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="SeatNumber" class="text-red-500 text-xs"></span>
+                </div>
+
+                <!-- Seat Class -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="SeatClass" class="text-sm font-semibold text-gray-600 font-mona">Seat Class <span class="text-red-500">*</span></label>
+                    <input asp-for="SeatClass" placeholder="e.g. Bus 101"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="SeatClass" class="text-red-500 text-xs"></span>
+                </div>
+
+            </div>
+
+            <!--Second Column-->
+            <div class="flex flex-col flex-1 gap-4">
+
+                <!-- Bus -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="BusId" class="text-sm font-semibold text-gray-600 font-mona">Bus <span class="text-red-500">*</span></label>
+                    <select asp-for="BusId" asp-items="ViewBag.Buses"
+                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white">
+                        <option value="">-- Select Bus --</option>
+                    </select>
+                    <span asp-validation-for="BusId" class="text-red-500 text-xs"></span>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!--Divider-->
+      
+        <div class="border-b border-gray-200 w-full">  </div>
+
+        <!--Footer / Actions-->
+        <div class="flex justify-end gap-2 p-4">
+            <a asp-controller="Bus" asp-action="Index"
+                   class="border border-gray-200 text-gray-600 font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-gray-50">
+                Cancel
+            </a>
+           
+            <button type="submit" class="bg-teal-600 text-white font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-teal-700">
+                @(string.IsNullOrEmpty(Model?.SeatId) ? "Create" : "Update")
+            </button>
+              
+              
+
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if (TempData["error"] != null && string.IsNullOrEmpty(Model?.SeatId))
+                {
+                    <text>
+                        document.querySelectorAll("input, select, textarea").forEach(el => {
+                            el.value = "";
+                        });
+                </text>
+            }
+            });
+    </script>
+}

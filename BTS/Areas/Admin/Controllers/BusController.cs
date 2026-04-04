@@ -7,6 +7,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BTS.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class BusController : Controller
     {
         private IUnitOfWork _unitOfWork;
@@ -17,7 +18,7 @@ namespace BTS.Areas.Admin.Controllers
         public IActionResult Index(int page = 1, int pageSize = 10)
         {
             var tableCount = _unitOfWork.Bus.GetAll().Count();
-            var obj = _unitOfWork.Bus.GetAll(includeProperties: "BusCompany").
+            var obj = _unitOfWork.Bus.GetAll(includeProperties: "BusType,BusCompany").
                 Skip((page - 1) * pageSize).
                 Take(pageSize).
                 ToList();

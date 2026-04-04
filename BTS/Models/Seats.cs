@@ -7,11 +7,10 @@ namespace BTS.Models
     public class Seats
     {
         [Key]
-        public string SeatId { get; set; } = $"SEAT-{Guid.NewGuid().ToString().Substring(0, 5)}";
+        public string? SeatId { get; set; } 
         [Required]
         public string? BusId { get; set; }
         [ForeignKey(nameof(BusId))]
-        [ValidateNever]
         public Buses? Buses { get; set; }
         [Required]
         public string? SeatNumber { get; set; }

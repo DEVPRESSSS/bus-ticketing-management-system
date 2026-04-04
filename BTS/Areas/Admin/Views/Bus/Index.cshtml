@@ -33,8 +33,11 @@
             <thead class="bg-teal-600 text-white">
                 <tr>
                     <th class="text-left px-4 py-3 font-semibold">Id</th>
+                    <th class="text-left px-4 py-3 font-semibold">Name</th>
                     <th class="text-left px-4 py-3 font-semibold">Bus Number</th>
                     <th class="text-left px-4 py-3 font-semibold">Plate Number</th>
+                    <th class="text-left px-4 py-3 font-semibold">Price/km</th>
+                    <th class="text-left px-4 py-3 font-semibold">Type</th>
                     <th class="text-left px-4 py-3 font-semibold">Company</th>
                     <th class="text-left px-4 py-3 font-semibold">Total Seats</th>
                     <th class="text-left px-4 py-3 font-semibold">Actions</th>
@@ -46,8 +49,11 @@
                 {
                     <tr class="hover:bg-teal-50 transition-colors">
                         <td class="px-4 py-3 text-gray-500">@bus.BusId</td>
+                        <td class="px-4 py-3 text-gray-800 font-medium">@bus.BusName</td>
                         <td class="px-4 py-3 text-gray-800 font-medium">@bus.BusNumber</td>
                         <td class="px-4 py-3 text-gray-800">@bus.PlateNumber</td>
+                        <td class="px-4 py-3 text-gray-800 font-medium">@bus.PricePerKm</td>
+                        <td class="px-4 py-3 text-gray-800">@bus.BusType?.BusTypeName</td>
                         <td class="px-4 py-3 text-gray-800">@bus.BusCompany?.CompanyName</td>
                         <td class="px-4 py-3 text-gray-800">@bus.TotalSeats</td>
                         <td class="px-4 py-3 flex gap-2">

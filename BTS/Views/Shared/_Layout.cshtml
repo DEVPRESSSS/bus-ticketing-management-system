@@ -18,8 +18,9 @@
                     <!-- Brand -->
                     <a asp-area="" asp-controller="Home" asp-action="Index"
                        class="font-mona text-xl font-bold text-teal-600 tracking-wide hover:text-teal-900 transition-colors">
-                        BUS TICKETING SYSTEM
+                        BTS
                     </a>
+                   
 
                     <!-- Desktop Nav Links -->
                     <div class="hidden sm:flex items-center gap-6">
@@ -33,20 +34,30 @@
                         </a>
                         <a asp-area="Admin" asp-controller="BusCompany" asp-action="Index"
                                class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
-                            BusCompany
+                            Bus Company
                         </a>
-                        <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                        <a asp-area="Admin" asp-controller="BusType" asp-action="Index"
                                class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
-                            Services
+                            Bus Type
                         </a>
-                        <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                        <a asp-area="Admin" asp-controller="Seat" asp-action="Index"
                                class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
-                            Pricing
+                            Seat
                         </a>
-                        <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                        <a asp-area="Admin" asp-controller="Station" asp-action="Index"
                                class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
-                            About Us
+                            Station
                         </a>
+                        <a asp-area="Admin" asp-controller="BusRoute" asp-action="Index"
+                           class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                             Bus route
+                        </a>
+                        <a asp-area="Admin" asp-controller="Schedule" asp-action="Index"
+                               class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                            Schedule
+                        </a>
+                        <partial name="_LoginPartial.cshtml"/> 
+                        
                     </div>
 
                     <!-- Mobile Hamburger -->

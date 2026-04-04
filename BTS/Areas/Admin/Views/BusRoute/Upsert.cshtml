@@ -1,0 +1,111 @@
+﻿@model BusRoutes
+<div class="shadow-sm w-full p-2 rounded-lg mt-4">
+    <!--Header-->
+    <div class="p-2 flex flex-col sm:flex-row">
+        <div class="flex flex-1 content-center">
+            <h3 class="text-teal-600 font-mona font-bold p-2"> @(Model?.StationId == null ? "Register new route" : "Update bus route")</h3>
+        </div>
+        <div class="flex flex-1 justify-center sm:justify-end">
+            <a class="bg-white font-mona border p-2 rounded-lg border-gray-200 text-teal-600 font-bold"
+               asp-controller="BusRoute" asp-action="Index">Back</a>
+        </div>
+    </div>
+
+    <!--Divider-->
+    <div class="border-b border-gray-200 w-full"></div>
+
+    <!--Body-->
+    <form method="post">
+        <div class="flex flex-col sm:flex-row gap-4 p-4">
+
+            <input asp-for="RouteId" hidden />
+            <!--First Column-->
+            <div class="flex flex-col flex-1 gap-4">
+                <!-- Origin station -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="StationId" class="text-sm font-semibold text-gray-600 font-mona">Origin Station <span class="text-red-500">*</span></label>
+                    <select asp-for="StationId" asp-items="ViewBag.OriginStationAndDestinationStation"
+                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white">
+                        <option value="">-- Select Origin Station --</option>
+                    </select>
+                    <span asp-validation-for="StationId" class="text-red-500 text-xs"></span>
+                </div>
+
+                <!-- Origin station -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="DestinationId" class="text-sm font-semibold text-gray-600 font-mona">Destination <span class="text-red-500">*</span></label>
+                    <select asp-for="DestinationId" asp-items="ViewBag.OriginStationAndDestinationStation"
+                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white">
+                        <option value="">-- Select Destination Station --</option>
+                    </select>
+                    <span asp-validation-for="DestinationId" class="text-red-500 text-xs"></span>
+                </div>
+
+           
+                <!-- Distance -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="DistanceKM" class="text-sm font-semibold text-gray-600 font-mona">DistanceKM <span class="text-red-500">*</span></label>
+                    <input id="distance" asp-for="DistanceKM" placeholder="e.g. 500 km"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="DistanceKM" class="text-red-500 text-xs"></span>
+                </div>
+
+            </div>
+
+            <!--Second Column-->
+            <div class="flex flex-col flex-1 gap-4">
+              
+                <!-- Base price -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="BasePrice" class="text-sm font-semibold text-gray-600 font-mona">Total Fare = (PricePerKm(Bus) * DistanceKM) <span class="text-red-500">*</span></label>
+                    <input asp-for="BasePrice"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" readonly />
+                    <span asp-validation-for="BasePrice" class="text-red-500 text-xs"></span>
+                </div>
+                
+                <!-- EstimatedTime -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="EstimatedTime" class="text-sm font-semibold text-gray-600 font-mona">EstimatedTime <span class="text-red-500">*</span></label>
+                    <input asp-for="EstimatedTime" placeholder="e.g. 2 hrs"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <span asp-validation-for="EstimatedTime" class="text-red-500 text-xs"></span>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Divider-->
+      
+        <div class="border-b border-gray-200 w-full">  </div>
+
+        <!--Footer / Actions-->
+        <div class="flex justify-end gap-2 p-4">
+            <a asp-controller="Bus" asp-action="Index"
+                   class="border border-gray-200 text-gray-600 font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-gray-50">
+                Cancel
+            </a>
+           
+            <button type="submit" class="bg-teal-600 text-white font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-teal-700">
+                @(string.IsNullOrEmpty(Model?.RouteId) ? "Create" : "Update")
+            </button>
+              
+              
+
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if (TempData["error"] != null && string.IsNullOrEmpty(Model?.RouteId))
+                {
+                    <text>
+                        document.querySelectorAll("input, select, textarea").forEach(el => {
+                            el.value = "";
+                        });
+                </text>
+            }
+
+            });
+    </script>
+}

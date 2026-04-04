@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BTS.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class BusCompanyController : Controller
     {
 
