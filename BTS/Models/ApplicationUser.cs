@@ -9,10 +9,7 @@ namespace BTS.Models
         [Required]
         [MaxLength(60)]
         public string? FullName { get; set; }
-        [Required]
-        [MaxLength(60)]
-        public string? Email { get; set; }
-       
+        
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
      
 

@@ -1096,6 +1096,9 @@
   .bg-teal-50 {
     background-color: var(--color-teal-50);
   }
+  .bg-teal-100 {
+    background-color: var(--color-teal-100);
+  }
   .bg-teal-500 {
     background-color: var(--color-teal-500);
   }

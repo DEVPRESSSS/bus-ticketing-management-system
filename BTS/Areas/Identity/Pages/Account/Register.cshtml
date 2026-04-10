@@ -17,13 +17,14 @@
         <div class="bg-white border border-gray-100 rounded-2xl shadow-sm p-8 mb-4">
             <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
 
-                <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm mb-4" role="alert"></div>
+                <div asp-validation-summary="ModelOnly" id="alert" class="text-red-500 text-sm mb-4" role="alert"></div>
 
                 <!-- Email -->
                 <div class="flex flex-col gap-1 mb-4">
                     <label asp-for="Input.Email" class="text-sm font-medium text-gray-700">Email</label>
                     <input asp-for="Input.Email"
                            type="email"
+                           id="email"
                            autocomplete="username"
                            aria-required="true"
                            placeholder="name@example.com"
@@ -38,7 +39,7 @@
                            type="text"
                            autocomplete="fullName"
                            aria-required="true"
-                           placeholder=""
+                           placeholder="e.g John Doe"
                            id="fullname"
                            class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" 
                            pattern="[a-zA-Z\s.'-]+" />
@@ -48,26 +49,54 @@
                 <!-- Password -->
                 <div class="flex flex-col gap-1 mb-4">
                     <label asp-for="Input.Password" class="text-sm font-medium text-gray-700">Password</label>
-                    <input asp-for="Input.Password"
-                           type="password"
-                           autocomplete="new-password"
-                           aria-required="true"
-                           placeholder="••••••••"
-                           maxlength="25"
-                           class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
+                    <div class="relative">
+                        <input asp-for="Input.Password"
+                               type="password"
+                               autocomplete="new-password"
+                               id="password"
+                               aria-required="true"
+                               placeholder="••••••••"
+                               maxlength="25"
+                               class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
+                        <button type="button" id="toggle-password"
+                                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-400 hover:text-teal-600 transition-colors"
+                                aria-label="Toggle password visibility">
+                            <svg id="eye-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <svg id="eye-off-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.97 9.97 0 012.084-3.458M6.343 6.343A9.965 9.965 0 0112 5c4.477 0 8.268 2.943 9.542 7a9.97 9.97 0 01-1.307 2.526M6.343 6.343L3 3m3.343 3.343l11.314 11.314M3 3l18 18" />
+                            </svg>
+                        </button>
+                    </div>
                     <span asp-validation-for="Input.Password" class="text-red-500 text-xs mt-1"></span>
                 </div>
 
                 <!-- Confirm Password -->
                 <div class="flex flex-col gap-1 mb-6">
                     <label asp-for="Input.ConfirmPassword" class="text-sm font-medium text-gray-700">Confirm Password</label>
-                    <input asp-for="Input.ConfirmPassword"
-                           type="password"
-                           autocomplete="new-password"
-                           aria-required="true"
-                           placeholder="••••••••"
-                           maxlength="25"
-                           class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
+                    <div class="relative">
+                        <input asp-for="Input.ConfirmPassword"
+                               type="password"
+                               id="confirm-password"
+                               autocomplete="new-password"
+                               aria-required="true"
+                               placeholder="••••••••"
+                               maxlength="25"
+                               class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
+                        <button type="button" id="toggle-confirm-password"
+                                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-400 hover:text-teal-600 transition-colors"
+                                aria-label="Toggle confirm password visibility">
+                            <svg id="eye-icon-confirm" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <svg id="eye-off-icon-confirm" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.97 9.97 0 012.084-3.458M6.343 6.343A9.965 9.965 0 0112 5c4.477 0 8.268 2.943 9.542 7a9.97 9.97 0 01-1.307 2.526M6.343 6.343L3 3m3.343 3.343l11.314 11.314M3 3l18 18" />
+                            </svg>
+                        </button>
+                    </div>
                     <span asp-validation-for="Input.ConfirmPassword" class="text-red-500 text-xs mt-1"></span>
                 </div>
 
@@ -117,14 +146,35 @@
     <script>
         const fullnameInput = document.getElementById('fullname');
 
-        fullnameInput.addEventListener('keydown', function (e) {
-            if (/[0-9]/.test(e.key)) {
-                e.preventDefault();
-            }
-        });
+        const el = document.getElementById('alert')?.textContent ?? "";
+        if (el !== "") {
+            document.getElementById('email').value = "";
+            document.getElementById('password').value = "";
+            document.getElementById('confirm-password').value = "";
+            fullnameInput.value = "";
+        }
 
+        fullnameInput.addEventListener('keydown', function (e) {
+            if (/[0-9]/.test(e.key)) e.preventDefault();
+        });
         fullnameInput.addEventListener('input', function () {
             this.value = this.value.replace(/[0-9]/g, '');
+        });
+
+        document.getElementById('toggle-password').addEventListener('click', () => {
+            const input = document.getElementById('password');
+            const isHidden = input.type === 'password';
+            input.type = isHidden ? 'text' : 'password';
+            document.getElementById('eye-icon').classList.toggle('hidden', isHidden);
+            document.getElementById('eye-off-icon').classList.toggle('hidden', !isHidden);
+        });
+
+        document.getElementById('toggle-confirm-password').addEventListener('click', () => {
+            const input = document.getElementById('confirm-password');
+            const isHidden = input.type === 'password';
+            input.type = isHidden ? 'text' : 'password';
+            document.getElementById('eye-icon-confirm').classList.toggle('hidden', isHidden);
+            document.getElementById('eye-off-icon-confirm').classList.toggle('hidden', !isHidden);
         });
     </script>
 }

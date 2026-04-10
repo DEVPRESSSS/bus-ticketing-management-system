@@ -43,7 +43,8 @@ namespace BTS.Areas.Service.Initializer
                     FullName = "Dwayne Catap",
                     Email = "dwaynecatap@gmail.com",
                     PhoneNumber = "09789449801",
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    NormalizedEmail = "dwaynecatap@gmail.com"
                 };
              
                 _userManager.CreateAsync(user, "**Admin123**").GetAwaiter().GetResult();
