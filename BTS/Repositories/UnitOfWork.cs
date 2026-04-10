@@ -13,6 +13,7 @@ namespace BTS.Repositories
         public IStationRepository Station { get; private set; }
         public IRouteRepository BusRoute { get; private set; }
         public IScheduleRepository Schedule { get; private set; }
+        public ITicketRepository Ticket { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -23,6 +24,7 @@ namespace BTS.Repositories
             Station = new StationRepository(db);
             BusRoute = new RouteRepository(db);
             Schedule = new ScheduleRepository(db);
+            Ticket = new TicketRepository(db);
         }
 
         public void Save()

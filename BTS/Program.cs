@@ -1,11 +1,13 @@
+using BTS.Areas.Service.Initializer;
 using BTS.Data;
+using BTS.Models;
 using BTS.Repositories;
 using BTS.Repositories.IRepositories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using BTS.Models;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using BTS.Utilities.EmailSender;
+using DotNetEnv;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,10 +32,13 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.SlidingExpiration = true;
 });
 builder.Services.AddRazorPages();
-
+Env.Load();
 //Register UnitOfWork
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IDbinitializer, DbInitializer>();
+
+
 
 var app = builder.Build();
 
@@ -57,5 +62,18 @@ app.MapControllerRoute(
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+//Seed the database
+SeedDatabase();
 
 app.Run();
+
+void SeedDatabase()
+{
+    using(var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbinitializer>();
+        dbInitializer.Initialize();
+
+    }
+
+}

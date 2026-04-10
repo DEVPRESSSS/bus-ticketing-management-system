@@ -1,12 +1,15 @@
-﻿using BTS.Models;
+﻿using BTS.Areas.Service.SD;
+using BTS.Models;
 using BTS.Repositories;
 using BTS.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BTS.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class BusController : Controller
     {

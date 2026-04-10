@@ -11,6 +11,8 @@ namespace BTS.Areas.Service.Initializer
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly string? _superAdmin;
+        private readonly string _password;
         public DbInitializer(ApplicationDbContext context, UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager
             )
@@ -18,6 +20,8 @@ namespace BTS.Areas.Service.Initializer
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            //_superAdmin = Environment.GetEnvironmentVariable("SUPER_ADMIN_EMAIL");
+            //_password = Environment.GetEnvironmentVariable("PASSWORD");
         }
         public void Initialize()
         {
@@ -25,7 +29,7 @@ namespace BTS.Areas.Service.Initializer
             {
                 _context.Database.Migrate();
             }
-            if (!_roleManager.RoleExistsAsync(SdRoles.Customer).GetAwaiter().GetResult() || !_roleManager.RoleExistsAsync(SdRoles.Customer).GetAwaiter().GetResult())
+            if (!_roleManager.RoleExistsAsync(SdRoles.Admin).GetAwaiter().GetResult())
             {
                 // Create Roles
                 _roleManager.CreateAsync(new IdentityRole(SdRoles.Admin)).GetAwaiter().GetResult();
@@ -35,13 +39,14 @@ namespace BTS.Areas.Service.Initializer
                 // Create Admin User
                 var user = new ApplicationUser
                 {
-                    UserName = "xmontemorjerald@gmail.com",
-                    Email = "xmontemorjerald@gmail.com",
+                    UserName = "dwaynecatap@gmail.com",
+                    FullName = "Dwayne Catap",
+                    Email = "dwaynecatap@gmail.com",
                     PhoneNumber = "09789449801",
                     EmailConfirmed = true
                 };
-
-                _userManager.CreateAsync(user, "Admin123*").GetAwaiter().GetResult();
+             
+                _userManager.CreateAsync(user, "**Admin123**").GetAwaiter().GetResult();
                 _userManager.AddToRoleAsync(user, SdRoles.Admin).GetAwaiter().GetResult();
             }
 

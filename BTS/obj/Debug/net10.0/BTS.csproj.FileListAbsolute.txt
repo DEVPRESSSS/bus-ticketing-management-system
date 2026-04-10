@@ -1,3 +1,4 @@
+D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\web.config
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\appsettings.Development.json
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\appsettings.json
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\package-lock.json
@@ -11,6 +12,7 @@ D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\BTS.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\BTS.pdb
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\Azure.Core.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\Azure.Identity.dll
+D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\DotNetEnv.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\Humanizer.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.UI.dll
@@ -70,9 +72,12 @@ D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\NuGet.Packaging.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\NuGet.ProjectModel.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\NuGet.Protocol.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\NuGet.Versioning.dll
+D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\SendGrid.dll
+D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\Sprache.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\SQLitePCLRaw.batteries_v2.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\SQLitePCLRaw.core.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\SQLitePCLRaw.provider.e_sqlite3.dll
+D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\StarkbankEcdsa.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\System.ClientModel.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\System.CodeDom.dll
 D:\RESUME_PROJECTS\BTS\BTS\bin\Debug\net10.0\System.Composition.AttributedModel.dll
@@ -389,4 +394,4 @@ D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\refint\BTS.dll
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\BTS.pdb
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\BTS.genruntimeconfig.cache
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\ref\BTS.dll
-D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\ebynz6cjdq-{0}-fuce64ov8f-fuce64ov8f.gz
+D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\ebynz6cjdq-{0}-amy8ll5a0z-amy8ll5a0z.gz

@@ -1,10 +1,13 @@
-﻿using BTS.Models;
+﻿using BTS.Areas.Service.SD;
+using BTS.Models;
 using BTS.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BTS.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class SeatController : Controller
     {

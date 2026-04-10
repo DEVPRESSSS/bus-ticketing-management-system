@@ -9,6 +9,7 @@
         IStationRepository Station { get; }
         IRouteRepository BusRoute { get; }
         IScheduleRepository Schedule { get; }
+        ITicketRepository Ticket { get; }
      
         void Save();
     }

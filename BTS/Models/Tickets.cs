@@ -7,7 +7,7 @@ namespace BTS.Models
     public class Tickets
     {
         [Key]
-        public string TicketId { get; set; } = $"TICKET-{Guid.NewGuid().ToString().Substring(0, 5)}";
+        public string? TicketId { get; set; } 
         [Required]
         public string TicketCode { get; set; } = $"TCKT-{Guid.NewGuid().ToString().Substring(0, 6)}";
 

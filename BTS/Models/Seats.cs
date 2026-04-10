@@ -15,7 +15,7 @@ namespace BTS.Models
         [Required]
         public string? SeatNumber { get; set; }
         public string? SeatClass { get; set; }
-        public bool isActive { get; set; }
+        public bool isActive { get; set; } = true;
         public DateTime CreatedBy { get; set; } = DateTime.Now;
     }
 }
