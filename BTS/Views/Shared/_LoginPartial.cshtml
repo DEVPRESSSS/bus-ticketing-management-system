@@ -8,7 +8,7 @@
 
     @if (SignInManager.IsSignedIn(User))
     {
-        <li>
+        @* <li>
             <a id="manage"
                    class="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 transition-colors"
                    asp-area="Identity"
@@ -16,7 +16,7 @@
                    title="Manage">
                 Hello @UserManager.GetUserName(User)!
             </a>
-        </li>
+        </li> *@
         <li>
             <form id="logoutForm"
                   class="flex items-center"

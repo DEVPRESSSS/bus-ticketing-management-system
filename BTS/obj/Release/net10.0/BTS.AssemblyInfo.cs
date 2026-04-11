@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BTS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26a3a01899c4fecd45cd8fa75001a2dbfa56e353")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+084ab0c7c448b9311dac067ef7a0ad73463f4083")]
 [assembly: System.Reflection.AssemblyProductAttribute("BTS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BTS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

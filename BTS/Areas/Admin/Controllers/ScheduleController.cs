@@ -74,6 +74,17 @@ namespace BTS.Areas.Admin.Controllers
                 _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
+            ViewBag.Routes = _unitOfWork.BusRoute.GetAll(includeProperties: "OriginStation,DestinationStation").Select(u => new SelectListItem
+            {
+                Text = $"{u.OriginStation?.StationName + " To " + u.DestinationStation?.StationName}",
+                Value = u.RouteId
+            });
+
+            ViewBag.Buses = _unitOfWork.Bus.GetAll().Select(u => new SelectListItem
+            {
+                Text = u.BusName,
+                Value = u.BusId
+            });
             return View(schedules);
         }
 

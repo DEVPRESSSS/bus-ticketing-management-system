@@ -96,11 +96,11 @@ namespace BTS.Areas.Customer.Controllers
                 .Take(obj.SeatCount)
                 .ToList();
 
-            //if (!availableSeats.Any())
-            //{
-            //    TempData["Error"] = "No available seats.";
-            //    return RedirectToAction("Index");
-            //}
+            if (!availableSeats.Any())
+            {
+                TempData["Error"] = "No available seats.";
+                return RedirectToAction("Index");
+            }
 
 
             var userId = _userManager.GetUserId(User);

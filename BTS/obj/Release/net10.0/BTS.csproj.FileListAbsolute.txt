@@ -394,4 +394,4 @@ D:\RESUME_PROJECTS\BTS\BTS\obj\Release\net10.0\refint\BTS.dll
 D:\RESUME_PROJECTS\BTS\BTS\obj\Release\net10.0\BTS.pdb
 D:\RESUME_PROJECTS\BTS\BTS\obj\Release\net10.0\BTS.genruntimeconfig.cache
 D:\RESUME_PROJECTS\BTS\BTS\obj\Release\net10.0\ref\BTS.dll
-D:\RESUME_PROJECTS\BTS\BTS\obj\Release\net10.0\compressed\ebynz6cjdq-{0}-h8ia5ra9ln-h8ia5ra9ln.gz
+D:\RESUME_PROJECTS\BTS\BTS\obj\Release\net10.0\compressed\ebynz6cjdq-{0}-84csh27tyx-84csh27tyx.gz

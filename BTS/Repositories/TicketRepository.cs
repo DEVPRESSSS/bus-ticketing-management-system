@@ -15,12 +15,18 @@ namespace BTS.Repositories
         }
         public void Update(Tickets tickets)
         {
-            var obj = _db.Tickets.FirstOrDefault(b =>b.TicketId == tickets.TicketId);
-            if (obj != null) {
-            
-               
+            var obj = _db.Tickets.FirstOrDefault(b => b.TicketId == tickets.TicketId);
+            if (obj != null)
+            {
+                obj.TicketCode = tickets.TicketCode;
+                obj.UserId = tickets.UserId;
+                obj.SeatId = tickets.SeatId;
+                obj.ScheduledId = tickets.ScheduledId;
+                obj.AmountPaid = tickets.AmountPaid;
+                obj.Status = tickets.Status;
+                obj.BookedAt = tickets.BookedAt;
+                obj.CancelledAt = tickets.CancelledAt;
             }
-
         }
     }
 }

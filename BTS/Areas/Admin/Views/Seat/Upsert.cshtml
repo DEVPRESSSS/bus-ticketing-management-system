@@ -21,10 +21,10 @@
             <input asp-for="SeatId" hidden />
             <!--First Column-->
             <div class="flex flex-col flex-1 gap-4">
-                <!-- Seat Number -->
+                <!-- Seat  -->
                 <div class="flex flex-col gap-1">
-                    <label asp-for="SeatNumber" class="text-sm font-semibold text-gray-600 font-mona"> Seat Number <span class="text-red-500">*</span></label>
-                    <input asp-for="SeatNumber" placeholder="e.g. Bus 101"
+                    <label asp-for="SeatNumber" class="text-sm font-semibold text-gray-600 font-mona"> Seat<span class="text-red-500">*</span></label>
+                    <input asp-for="SeatNumber" placeholder="e.g. 1A"
                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
                     <span asp-validation-for="SeatNumber" class="text-red-500 text-xs"></span>
                 </div>
@@ -33,7 +33,7 @@
                 <div class="flex flex-col gap-1">
                     <label asp-for="SeatClass" class="text-sm font-semibold text-gray-600 font-mona">Seat Class <span class="text-red-500">*</span></label>
                     <input asp-for="SeatClass" placeholder="e.g. Bus 101"
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="10" />
                     <span asp-validation-for="SeatClass" class="text-red-500 text-xs"></span>
                 </div>
 

@@ -22,23 +22,24 @@
                        class="font-mona text-xl font-bold text-teal-600 tracking-wide hover:text-teal-900 transition-colors">
                     BTS
                 </a>
-                   
+             
             
                 <!-- Desktop Nav Links -->
                 <div class="hidden sm:flex items-center gap-6">
-                    @if (User.IsInRole(SdRoles.Admin))
-                        {
-                            <a asp-area="Customer" asp-controller="Home" asp-action="Index"
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Index"
                            class="font-mona text-sm fw-bold font-medium text-gray-600 hover:text-blue-700 transition-colors">
                         Home
                     </a>
+                    @if (User.IsInRole(SdRoles.Admin))
+                        {
+             
                     <a asp-area="Admin" asp-controller="Bus" asp-action="Index"
                            class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
                         Bus
                     </a>
                     <a asp-area="Admin" asp-controller="BusCompany" asp-action="Index"
                            class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
-                        Bus Company
+                        Company
                     </a>
                     <a asp-area="Admin" asp-controller="BusType" asp-action="Index"
                            class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
@@ -54,12 +55,16 @@
                     </a>
                     <a asp-area="Admin" asp-controller="BusRoute" asp-action="Index"
                            class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
-                        Bus route
+                        Route
                     </a>
                     <a asp-area="Admin" asp-controller="Schedule" asp-action="Index"
                            class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
                         Schedule
                     </a>
+                        <a asp-area="Admin" asp-controller="Ticket" asp-action="Index"
+                               class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                            Bookings
+                        </a>
                 } 
                 <partial name="_LoginPartial.cshtml" />
 
@@ -95,7 +100,7 @@
     <!-- Footer -->
     <footer class="bg-teal-600 border-t border-gray-200 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-sm text-white text-center">
-            &copy;Catap 2026 - BTS --- First year project;
+            &copy;Catap 2026 - BTS - First year project
          
         </div>
     </footer>

@@ -17,7 +17,6 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
-D:\RESUME_PROJECTS\BTS\BTS\wwwroot\css\site.css
 D:\RESUME_PROJECTS\BTS\BTS\wwwroot\lib\jquery\dist\jquery.slim.min.map
 D:\RESUME_PROJECTS\BTS\BTS\wwwroot\lib\jquery\dist\jquery.slim.min.js
 D:\RESUME_PROJECTS\BTS\BTS\wwwroot\lib\jquery\dist\jquery.slim.js
@@ -34,5 +33,6 @@ D:\RESUME_PROJECTS\BTS\BTS\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery
 D:\RESUME_PROJECTS\BTS\BTS\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
 D:\RESUME_PROJECTS\BTS\BTS\wwwroot\js\site.js
 D:\RESUME_PROJECTS\BTS\BTS\wwwroot\favicon.ico
-D:\RESUME_PROJECTS\BTS\BTS\wwwroot\lib\jquery\LICENSE.txt
+D:\RESUME_PROJECTS\BTS\BTS\wwwroot\css\site.css
 D:\RESUME_PROJECTS\BTS\BTS\wwwroot\css\output.css
+D:\RESUME_PROJECTS\BTS\BTS\wwwroot\lib\jquery\LICENSE.txt

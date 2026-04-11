@@ -362,6 +362,7 @@ D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\a3ygkwa5zy-{0}-2z0ns9nrw
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\nezrqnk58p-{0}-muycvpuwrr-muycvpuwrr.gz
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\v0zgfp0y55-{0}-87fc7y1x7t-87fc7y1x7t.gz
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\yfc7ypekbg-{0}-mlv21k5csn-mlv21k5csn.gz
+D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\ebynz6cjdq-{0}-84csh27tyx-84csh27tyx.gz
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\sxu0p99nbu-{0}-le1khsi2bb-le1khsi2bb.gz
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\75rtb6goso-{0}-61n19gt1b8-61n19gt1b8.gz
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\xe1zbdegms-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
@@ -394,4 +395,3 @@ D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\refint\BTS.dll
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\BTS.pdb
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\BTS.genruntimeconfig.cache
 D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\ref\BTS.dll
-D:\RESUME_PROJECTS\BTS\BTS\obj\Debug\net10.0\compressed\ebynz6cjdq-{0}-svey997zpr-svey997zpr.gz

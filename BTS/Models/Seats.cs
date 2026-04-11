@@ -13,6 +13,7 @@ namespace BTS.Models
         [ForeignKey(nameof(BusId))]
         public Buses? Buses { get; set; }
         [Required]
+        [Display(Name ="Seat")]
         public string? SeatNumber { get; set; }
         public string? SeatClass { get; set; }
         public bool isActive { get; set; } = true;

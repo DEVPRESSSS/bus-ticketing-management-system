@@ -24,7 +24,7 @@
                 <!-- Station name -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="StationName" class="text-sm font-semibold text-gray-600 font-mona"> Station Name <span class="text-red-500">*</span></label>
-                    <input asp-for="StationName" placeholder="e.g. Bus 101"
+                    <input asp-for="StationName" placeholder="e.g. Recto Station"
                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
                     <span asp-validation-for="StationName" class="text-red-500 text-xs"></span>
                 </div>
@@ -32,7 +32,7 @@
                 <!-- City Class -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="City" class="text-sm font-semibold text-gray-600 font-mona">City <span class="text-red-500">*</span></label>
-                    <input asp-for="City" placeholder="e.g. Bus 101"
+                    <input asp-for="City" placeholder="e.g. Manila City"
                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
                     <span asp-validation-for="City" class="text-red-500 text-xs"></span>
                 </div>
@@ -40,8 +40,8 @@
                 <!-- Province -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="Province" class="text-sm font-semibold text-gray-600 font-mona">Province <span class="text-red-500">*</span></label>
-                    <input asp-for="Province" placeholder="e.g. Bus 101"
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <input asp-for="Province" placeholder="e.g. Mindoro province"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="50" />
                     <span asp-validation-for="Province" class="text-red-500 text-xs"></span>
                 </div>
 
@@ -53,23 +53,23 @@
                 <!-- Addresss -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="Addresss" class="text-sm font-semibold text-gray-600 font-mona">Addresss <span class="text-red-500">*</span></label>
-                    <input asp-for="Addresss" placeholder="e.g. Bus 101"
+                    <input asp-for="Addresss" placeholder="e.g. Street 1 Recto"
                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
                     <span asp-validation-for="Addresss" class="text-red-500 text-xs"></span>
                 </div>
                 <!-- latitude -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="Latitude" class="text-sm font-semibold text-gray-600 font-mona">Latitude <span class="text-red-500">*</span></label>
-                    <input asp-for="Latitude" placeholder="e.g. Bus 101"
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <input asp-for="Latitude" placeholder=""
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="5"/>
                     <span asp-validation-for="Latitude" class="text-red-500 text-xs"></span>
                 </div>
 
                 <!-- Longitude -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="Longitude" class="text-sm font-semibold text-gray-600 font-mona">Latitude <span class="text-red-500">*</span></label>
-                    <input asp-for="Longitude" placeholder="e.g. Bus 101"
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <input asp-for="Longitude" placeholder="e.g. "
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="5" />
                     <span asp-validation-for="Longitude" class="text-red-500 text-xs"></span>
                 </div>
 

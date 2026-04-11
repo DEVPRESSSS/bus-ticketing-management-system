@@ -25,15 +25,15 @@
                 <div class="flex flex-col gap-1">
                     <label asp-for="BusName" class="text-sm font-semibold text-gray-600 font-mona"> Bus Name <span class="text-red-500">*</span></label>
                     <input asp-for="BusName" placeholder="e.g. Bus 101"
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="20" />
                     <span asp-validation-for="BusName" class="text-red-500 text-xs"></span>
                 </div>
 
                 <!-- Bus Number -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="BusNumber" class="text-sm font-semibold text-gray-600 font-mona">Bus Number <span class="text-red-500">*</span></label>
-                    <input asp-for="BusNumber" placeholder="e.g. Bus 101"
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <input asp-for="BusNumber" placeholder="e.g. 100"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="10" />
                     <span asp-validation-for="BusNumber" class="text-red-500 text-xs"></span>
                 </div>
 
@@ -41,7 +41,7 @@
                 <div class="flex flex-col gap-1">
                     <label asp-for="PlateNumber" class="text-sm font-semibold text-gray-600 font-mona">Plate Number <span class="text-red-500">*</span></label>
                     <input asp-for="PlateNumber" placeholder="e.g. ABC-1234"
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="15" />
                     <span asp-validation-for="PlateNumber" class="text-red-500 text-xs"></span>
                 </div>
 
@@ -62,15 +62,15 @@
                 <!-- Price per KM -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="PricePerKm" class="text-sm font-semibold text-gray-600 font-mona">PricePerKm (depends on Bus Type) <span class="text-red-500">*</span></label>
-                    <input asp-for="PricePerKm" placeholder="e.g 2.5 pesos"
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                    <input asp-for="PricePerKm" placeholder="e.g 2.5 "
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="2" />
                     <span asp-validation-for="PricePerKm" class="text-red-500 text-xs"></span>
                 </div>
                 <!-- Total Seats -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="TotalSeats" class="text-sm font-semibold text-gray-600 font-mona">Total Seats <span class="text-red-500">*</span></label>
                     <input asp-for="TotalSeats" type="number" min="1" placeholder="e.g. 50"
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="2" />
                     <span asp-validation-for="TotalSeats" class="text-red-500 text-xs"></span>
                 </div>
 

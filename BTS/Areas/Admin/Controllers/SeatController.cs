@@ -18,7 +18,7 @@ namespace BTS.Areas.Admin.Controllers
         }
         public IActionResult Index(int page = 1, int pageSize = 10)
         {
-            var tableCount = _unitOfWork.Seat.GetAll(includeProperties: "Buses").Count();
+            var tableCount = _unitOfWork.Seat.GetAll(includeProperties: "Buses,Buses.BusCompany").Count();
             var obj = _unitOfWork.Seat.GetAll().
                 Skip((page - 1) * pageSize).
                 Take(pageSize).

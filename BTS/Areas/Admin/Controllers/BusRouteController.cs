@@ -60,7 +60,11 @@ namespace BTS.Areas.Admin.Controllers
             if (busRoutes.DestinationId == busRoutes.StationId)
             {
                 TempData["error"] = "Invalid destination, please select unique origin station or destination";
-
+                ViewBag.OriginStationAndDestinationStation = _unitOfWork.Station.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.StationName,
+                    Value = u.StationId
+                });
                 return View(busRoutes);
             }
 

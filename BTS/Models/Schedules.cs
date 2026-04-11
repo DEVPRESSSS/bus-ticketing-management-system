@@ -22,6 +22,7 @@ namespace BTS.Models
         public DateTime ArrivalTime { get; set; }
 
         public string? Status { get; set; }
+        [Required]
         public int? AvailableSeats { get; set; }
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
     }
