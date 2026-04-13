@@ -21,18 +21,22 @@
             <input asp-for="StationId" hidden />
             <!--First Column-->
             <div class="flex flex-col flex-1 gap-4">
-                <!-- Station name -->
+                <!-- Station Name -->
                 <div class="flex flex-col gap-1">
-                    <label asp-for="StationName" class="text-sm font-semibold text-gray-600 font-mona"> Station Name <span class="text-red-500">*</span></label>
+                    <label asp-for="StationName" class="text-sm font-semibold text-gray-600 font-mona">Station Name <span class="text-red-500">*</span></label>
                     <input asp-for="StationName" placeholder="e.g. Recto Station"
+                           oninput="this.value = this.value.replace(/[0-9]/g, '')"
+                           onkeydown="return ['Backspace','Tab','ArrowLeft','ArrowRight','Delete',' '].includes(event.key) || /^[^0-9]$/.test(event.key)"
                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
                     <span asp-validation-for="StationName" class="text-red-500 text-xs"></span>
                 </div>
 
-                <!-- City Class -->
+                <!-- City -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="City" class="text-sm font-semibold text-gray-600 font-mona">City <span class="text-red-500">*</span></label>
                     <input asp-for="City" placeholder="e.g. Manila City"
+                           oninput="this.value = this.value.replace(/[0-9]/g, '')"
+                           onkeydown="return ['Backspace','Tab','ArrowLeft','ArrowRight','Delete',' '].includes(event.key) || /^[^0-9]$/.test(event.key)"
                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
                     <span asp-validation-for="City" class="text-red-500 text-xs"></span>
                 </div>
@@ -40,36 +44,47 @@
                 <!-- Province -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="Province" class="text-sm font-semibold text-gray-600 font-mona">Province <span class="text-red-500">*</span></label>
-                    <input asp-for="Province" placeholder="e.g. Mindoro province"
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="50" />
+                    <input asp-for="Province" placeholder="e.g. Mindoro Province"
+                           maxlength="50"
+                           oninput="this.value = this.value.replace(/[0-9]/g, '')"
+                           onkeydown="return ['Backspace','Tab','ArrowLeft','ArrowRight','Delete',' '].includes(event.key) || /^[^0-9]$/.test(event.key)"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
                     <span asp-validation-for="Province" class="text-red-500 text-xs"></span>
                 </div>
-
             </div>
 
             <!--Second Column-->
             <div class="flex flex-col flex-1 gap-4">
-             
-                <!-- Addresss -->
+
+                <!-- Address -->
                 <div class="flex flex-col gap-1">
-                    <label asp-for="Addresss" class="text-sm font-semibold text-gray-600 font-mona">Addresss <span class="text-red-500">*</span></label>
+                    <label asp-for="Addresss" class="text-sm font-semibold text-gray-600 font-mona">Address <span class="text-red-500">*</span></label>
                     <input asp-for="Addresss" placeholder="e.g. Street 1 Recto"
                            class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
                     <span asp-validation-for="Addresss" class="text-red-500 text-xs"></span>
                 </div>
-                <!-- latitude -->
+
+                <!-- Latitude -->
                 <div class="flex flex-col gap-1">
                     <label asp-for="Latitude" class="text-sm font-semibold text-gray-600 font-mona">Latitude <span class="text-red-500">*</span></label>
-                    <input asp-for="Latitude" placeholder=""
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="5"/>
+                    <input asp-for="Latitude" placeholder="e.g. 14.5995"
+                           type="number" step="0.0001"
+                           maxlength="10"
+                           oninput="this.value = this.value.replace(/[^0-9.\-]/g, '').replace(/(\..*)\./g, '$1')"
+                           onkeydown="return ['Backspace','Tab','ArrowLeft','ArrowRight','Delete','.','-'].includes(event.key) || /^[0-9]$/.test(event.key)"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
                     <span asp-validation-for="Latitude" class="text-red-500 text-xs"></span>
                 </div>
 
                 <!-- Longitude -->
                 <div class="flex flex-col gap-1">
-                    <label asp-for="Longitude" class="text-sm font-semibold text-gray-600 font-mona">Latitude <span class="text-red-500">*</span></label>
-                    <input asp-for="Longitude" placeholder="e.g. "
-                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" maxlength="5" />
+                    <label asp-for="Longitude" class="text-sm font-semibold text-gray-600 font-mona">Longitude <span class="text-red-500">*</span></label>
+                    <input asp-for="Longitude" placeholder="e.g. 120.9842"
+                           type="number" step="0.0001"
+                           maxlength="10"
+                           oninput="this.value = this.value.replace(/[^0-9.\-]/g, '').replace(/(\..*)\./g, '$1')"
+                           onkeydown="return ['Backspace','Tab','ArrowLeft','ArrowRight','Delete','.','-'].includes(event.key) || /^[0-9]$/.test(event.key)"
+                           class="border border-gray-200 rounded-lg p-2 text-sm font-mona focus:outline-none focus:ring-2 focus:ring-teal-400" />
                     <span asp-validation-for="Longitude" class="text-red-500 text-xs"></span>
                 </div>
 
@@ -77,36 +92,32 @@
         </div>
 
         <!--Divider-->
-      
-        <div class="border-b border-gray-200 w-full">  </div>
+        <div class="border-b border-gray-200 w-full"></div>
 
         <!--Footer / Actions-->
         <div class="flex justify-end gap-2 p-4">
-            <a asp-controller="Bus" asp-action="Index"
+            <a asp-controller="Station" asp-action="Index"
                    class="border border-gray-200 text-gray-600 font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-gray-50">
                 Cancel
             </a>
-           
             <button type="submit" class="bg-teal-600 text-white font-mona font-semibold text-sm px-4 py-2 rounded-lg hover:bg-teal-700">
                 @(string.IsNullOrEmpty(Model?.StationId) ? "Create" : "Update")
             </button>
-              
-              
-
         </div>
     </form>
 </div>
+
 @section Scripts {
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             @if (TempData["error"] != null && string.IsNullOrEmpty(Model?.StationId))
-                {
+            {
                     <text>
-                        document.querySelectorAll("input, select, textarea").forEach(el => {
-                            el.value = "";
-                        });
-                </text>
+                            document.querySelectorAll("input, select, textarea").forEach(el => {
+                                el.value = "";
+                            });
+                    </text>
             }
-            });
+        });
     </script>
 }

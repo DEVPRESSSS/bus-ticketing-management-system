@@ -34,6 +34,7 @@ namespace BTS.Areas.Admin.Controllers
             if (ticket == null) return NotFound();
 
             ticket.Status = "Approved";
+            ticket.PaymentStatus = "Paid";
             _unitOfWork.Ticket.Update(ticket);
             _unitOfWork.Save();
 
@@ -47,6 +48,7 @@ namespace BTS.Areas.Admin.Controllers
             if (ticket == null) return NotFound();
 
             ticket.Status = "Rejected";
+            ticket.PaymentStatus = "Refund";
             ticket.CancelledAt = DateTime.Now;
             _unitOfWork.Ticket.Update(ticket);
             _unitOfWork.Save();

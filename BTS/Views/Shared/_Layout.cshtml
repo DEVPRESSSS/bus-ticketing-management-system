@@ -65,7 +65,13 @@
                                class="font-mona text-sm fw-bold  font-medium text-gray-600 hover:text-blue-700 transition-colors">
                             Bookings
                         </a>
-                } 
+                    }else if (User.IsInRole(SdRoles.Customer))
+                        {
+                        <a asp-area="Customer" asp-controller="Home" asp-action="MyBooking"
+                               class="font-mona text-sm fw-bold font-medium text-gray-600 hover:text-blue-700 transition-colors">
+                            My Bookings
+                        </a>
+                    }
                 <partial name="_LoginPartial.cshtml" />
 
                 </div>

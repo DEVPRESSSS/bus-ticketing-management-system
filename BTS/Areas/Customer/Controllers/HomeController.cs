@@ -20,16 +20,17 @@ namespace BTS.Areas.Customer.Controllers
         }
         public IActionResult Index()
         {
-            var listOfAvailableBus = _unitOfWork.Schedule.GetAll(includeProperties: "Route.OriginStation,Route.DestinationStation,Buses,Buses.BusCompany,Buses.BusType").ToList();
-            if(listOfAvailableBus == null)
-            {
-                TempData["Error"] = "No bus schedule available!!!";
-                return View();
-            }
+            var listOfAvailableBus = _unitOfWork.Schedule.GetAll(includeProperties: "Route.OriginStation,Route.DestinationStation,Buses,Buses.BusCompany,Buses.BusType")
+                    .Where(x=>x.DepartureTime >= DateTime.Today && x.AvailableSeats > 0)
+                    .ToList();
+         
 
             var obj = new BookingVM
             {
+
                 Schedules = listOfAvailableBus,
+                SelectedDate = DateTime.Today,
+                
             };
 
             ViewBag.Routes = _unitOfWork.BusRoute.GetAll(includeProperties: "OriginStation,DestinationStation").Select(u => new SelectListItem
@@ -37,6 +38,12 @@ namespace BTS.Areas.Customer.Controllers
                 Text = $"{u.OriginStation?.StationName + " To " + u.DestinationStation?.StationName}",
                 Value = u.RouteId
             });
+            //Counts
+            ViewBag.BusesCount = _unitOfWork.Bus.GetAll().Count();
+            ViewBag.ScheduleCount = _unitOfWork.Schedule.GetAll().Count();
+            ViewBag.TicketCount = _unitOfWork.Ticket.GetAll().Count();
+            ViewBag.UsersCount = _unitOfWork.Ticket.GetAll().Count();
+
             return View(obj);
         }
 
@@ -96,12 +103,11 @@ namespace BTS.Areas.Customer.Controllers
                 .Take(obj.SeatCount)
                 .ToList();
 
-            if (!availableSeats.Any())
-            {
-                TempData["Error"] = "No available seats.";
-                return RedirectToAction("Index");
-            }
-
+            //if (availableSeats.Count() < obj.SeatCount)
+            //{
+            //    TempData["Error"] = "Not enough available seats.";
+            //    return RedirectToAction("Index");
+            //}
 
             var userId = _userManager.GetUserId(User);
 
@@ -115,6 +121,8 @@ namespace BTS.Areas.Customer.Controllers
                     SeatId = seat.SeatId,
                     ScheduledId = obj.ScheduleId,
                     AmountPaid = schedule.Route?.BasePrice ?? 0,
+                    ReferenceNumber = obj.ReferenceNumber,
+                    PaymentStatus = "Pending",
                     Status = "Confirmed",
                     BookedAt = DateTime.Now,
                     CancelledAt = null
@@ -127,6 +135,9 @@ namespace BTS.Areas.Customer.Controllers
             }
 
             schedule.AvailableSeats -= obj.SeatCount;
+            if (schedule.AvailableSeats == 0)
+                schedule.Status = "Fully Booked";
+
             _unitOfWork.Schedule.Update(schedule);
             _unitOfWork.Save();
 
@@ -151,5 +162,8 @@ namespace BTS.Areas.Customer.Controllers
 
             return View(tickets);
         }
+
+    
+
     }
 }

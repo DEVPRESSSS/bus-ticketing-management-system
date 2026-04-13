@@ -56,7 +56,6 @@ namespace BTS.Areas.Admin.Controllers
         public IActionResult Upsert(BusRoutes busRoutes)
         {
 
-            //var destination = _unitOfWork.BusRoute.Get(x => x.DestinationId == busRoutes.StationId);
             if (busRoutes.DestinationId == busRoutes.StationId)
             {
                 TempData["error"] = "Invalid destination, please select unique origin station or destination";
@@ -65,6 +64,14 @@ namespace BTS.Areas.Admin.Controllers
                     Text = u.StationName,
                     Value = u.StationId
                 });
+                return View(busRoutes);
+            }
+
+            //Check first if the origin station at destination is already exist
+            var isExist = _unitOfWork.BusRoute.Get(x=>x.StationId == busRoutes.StationId && x.DestinationId == busRoutes.DestinationId);
+            if (isExist != null)
+            {
+                TempData["error"] = "Route already exist please create new one";
                 return View(busRoutes);
             }
 

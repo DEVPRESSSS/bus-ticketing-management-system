@@ -29,6 +29,10 @@ namespace BTS.Models
         [Required]
         [Precision(10, 2)]
         public decimal AmountPaid { get; set; }
+        [Required]
+        [MaxLength(13)]
+        public string? ReferenceNumber { get; set; }
+        public string? PaymentStatus { get; set; }
         public string? Status { get; set; }
         public DateTime? BookedAt { get; set; } = DateTime.Now;
         public DateTime? CancelledAt { get; set; } = DateTime.Now;

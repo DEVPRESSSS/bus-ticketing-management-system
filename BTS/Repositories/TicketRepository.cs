@@ -24,6 +24,7 @@ namespace BTS.Repositories
                 obj.ScheduledId = tickets.ScheduledId;
                 obj.AmountPaid = tickets.AmountPaid;
                 obj.Status = tickets.Status;
+                obj.PaymentStatus = tickets.PaymentStatus;
                 obj.BookedAt = tickets.BookedAt;
                 obj.CancelledAt = tickets.CancelledAt;
             }

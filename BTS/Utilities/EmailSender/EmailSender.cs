@@ -13,7 +13,7 @@ namespace BTS.Utilities.EmailSender
         private readonly string? _from;
         public EmailSender(IConfiguration config)
         {
-            _sendGridAPIkey = System.Environment.GetEnvironmentVariable("SEND_GRID_API_KEY ");
+            _sendGridAPIkey = System.Environment.GetEnvironmentVariable("SEND_GRID_API_KEY");
             _from = System.Environment.GetEnvironmentVariable("SUPER_ADMIN_EMAIL");
         }
 
@@ -23,7 +23,7 @@ namespace BTS.Utilities.EmailSender
             try
             {
                 var sendGridClient = new SendGridClient(_sendGridAPIkey);
-                var from = new EmailAddress("developercsharp6@gmail.com","Password recovery");
+                var from = new EmailAddress("developercsharp6@gmail.com", "Password recovery");
                 var to = new EmailAddress(email);
                 var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
                 var response = await sendGridClient.SendEmailAsync(msg);

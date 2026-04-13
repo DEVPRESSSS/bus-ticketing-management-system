@@ -25,7 +25,7 @@
 
                         <!-- From -->
                         <div class="flex flex-col gap-1 flex-1">
-                            <label class="text-sm font-medium text-gray-700">From</label>
+                            <label class="text-sm font-medium text-gray-700">Choose bus route</label>
                             <div class="relative">
                                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,7 +35,7 @@
                                 </span>
                                 <select asp-for="From"  asp-items="ViewBag.Routes"
                                         class="w-full pl-9 pr-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition">
-                                    <option value=""> -- Select Origin --</option>
+                                    <option value=""> -- Select origin and destination  --</option>
                                 </select>
                                 @* <input type="text" name="from" placeholder="Departure city"
                                        class="w-full pl-9 pr-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" /> *@
@@ -51,7 +51,7 @@
                             </div>
                         </div>
 
-                        <!-- To -->
+                        <!-- To 
                         <div class="flex flex-col gap-1 flex-1">
                             <label class="text-sm font-medium text-gray-700">To</label>
                             <div class="relative">
@@ -69,7 +69,7 @@
                                        class="w-full pl-9 pr-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" /> *@
                             </div>
                         </div>
-
+                        -->
                         <!-- Date -->
                         <div class="flex flex-col gap-1 flex-1">
                             <label class="text-sm font-medium text-gray-700">Travel Date</label>
@@ -79,8 +79,8 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
                                 </span>
-                                <input type="date" asp-for="SelectedDate" 
-                                       class="w-full pl-9 pr-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
+                                <input type="date" asp-for="SelectedDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" 
+                                       max="@($"{new DateTime(DateTime.Now.Year, 12, 31):yyyy-MM-dd}")" class="w-full pl-9 pr-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
                             </div>
                         </div>
 
@@ -98,7 +98,7 @@
 
             <!-- Results Section -->
             <div>
-                <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Available Buses</h2>
+                <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">@(Model.Schedules.Any() ? "Available buse" : "Sorry no bus schedule available")</h2>
 
                 <div class="flex flex-col gap-4">
                     @foreach (var item in Model.Schedules)
@@ -129,7 +129,7 @@
                                 <!-- Time -->
                                 <div class="flex items-center gap-6 text-center">
                                     <div>
-                                        <p class="text-sm font-bold text-gray-900">@item.DepartureTime.ToString("MM d, yyyy hh:mm tt")</p>
+                                        <p class="text-sm font-bold text-gray-900">@item.DepartureTime.ToString("dddd d, yyyy hh:mm tt")</p>
                                         <p class="text-xs text-gray-400">Departure</p>
                                     </div>
                                     <div class="flex flex-col items-center">
@@ -141,19 +141,19 @@
                                         <p class="text-xs text-teal-500">Direct</p>
                                     </div>
                                     <div>
-                                        <p class="text-sm font-bold text-gray-900">@item.ArrivalTime.ToString("MM d, yyyy hh:mm tt")</p>
+                                        <p class="text-sm font-bold text-gray-900">@item.ArrivalTime.ToString("dddd d, yyyy hh:mm tt")</p>
                                         <p class="text-xs text-gray-400">Arrival</p>
                                     </div>
                                 </div>
 
                                 <!-- Seats & Price -->
                                 <div class="flex flex-col items-end gap-2">
-                                    <span class="text-xs font-medium text-green-600 bg-green-50 px-2 py-0.5 rounded-full">
-                                        @item.AvailableSeats seats left
+                                    <span class="text-xs font-medium @(item.AvailableSeats >= 1 ? "text-green-600 bg-green-50" : "text-red-600 bg-red-50")   px-2 py-0.5 rounded-full" )>
+                                        @(item.AvailableSeats >= 1 ? $"{item.AvailableSeats + " seats left"}" : "Fully booked")
                                     </span>
                                     <p class="text-xl font-bold text-teal-600">@item.Route?.BasePrice.ToString()</p>
                                     <a onclick="showModal('@item.ScheduleId')"
-                                           class="bg-teal-600 hover:bg-teal-700 text-white text-xs font-medium p-2 rounded-xl transition-colors duration-200">
+                                           class="bg-teal-600 hover:bg-teal-700 text-white text-xs font-medium p-2 rounded-xl transition-colors duration-200 @(item.AvailableSeats  == 0 ? "hidden" : "visible" )">
                                         Book Now
                                     </a>
                                 </div>
@@ -166,15 +166,7 @@
 
                     }
 
-                    <!-- No Results State -->
-                    @*
-                    <div class="bg-white border border-gray-100 rounded-2xl shadow-sm p-12 text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-gray-200 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <p class="text-gray-400 text-sm">No buses available for the selected date and route.</p>
-                    </div>
-                    *@
+                
 
                 </div>
             </div>
@@ -184,9 +176,9 @@
 
     <!-- Seat Booking Modal -->
     <div id="seatModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40">
-        <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-sm mx-4">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-base font-semibold text-gray-900">Select Number of Seats</h2>
+        <div class="bg-white rounded-2xl shadow-lg p-5 w-full max-w-sm mx-4">
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="text-base font-semibold text-gray-900">Book Your Seat</h2>
                 <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -194,27 +186,61 @@
                 </button>
             </div>
 
-            <div class="flex flex-col gap-2 mb-6">
+         
+            <!-- Seat Count -->
+            <div class="flex flex-col gap-1 mb-4">
                 <label class="text-sm font-medium text-gray-700">Number of Seats</label>
                 <input type="number" id="seatCount" min="1" max="10" value="1"
-                       class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900
+                       class="w-full px-3 py-2 rounded-xl border border-gray-200 text-sm text-gray-900
                 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition" />
                 <p class="text-xs text-gray-400">Enter a value between 1 and 10.</p>
             </div>
 
+            <!-- GCash Payment Section -->
+            <div class="border-t border-gray-100 pt-4 mb-4">
+                <p class="text-sm font-medium text-gray-700 mb-2">Payment via GCash</p>
+
+                <!-- QR Code -->
+                <div class="flex justify-center mb-2">
+                    <div class="border border-gray-200 rounded-xl p-2 inline-block">
+                        <img src="~/Images/Maya.jpg" alt="GCash QR Code"
+                             class="w-48 h-48 object-contain" />
+                    </div>
+                </div>
+                <p class="text-xs text-center text-gray-400 mb-3">
+                    Scan to pay via GCash &middot;
+                    <span class="text-gray-600 font-medium">Juan Dela Cruz</span>
+                </p>
+
+                <!-- Reference Number -->
+                <div class="flex flex-col gap-1">
+                    <label asp-for="ReferenceNumber" class="text-sm font-medium text-gray-700">
+                        GCash Reference Number
+                    </label>
+                    <input type="text" asp-for="ReferenceNumber" id="gcashRef" 
+                           placeholder="e.g. 1234567890"
+                           maxlength="13"
+                           class="w-full px-3 py-2 rounded-xl border border-gray-200 text-sm text-gray-900
+                    focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition" required />
+                    <p class="text-xs text-gray-400">Enter the 13-digit reference number from your GCash receipt.</p>
+                </div>
+            </div>
+
+            <!-- Actions -->
             <div class="flex gap-3">
                 <button onclick="closeModal()"
-                        class="flex-1 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-600 hover:bg-gray-50 transition">
+                        class="flex-1 py-2 rounded-xl border border-gray-200 text-sm text-gray-600 hover:bg-gray-50 transition">
                     Cancel
                 </button>
-                <!-- Hidden form inside the modal, above the Confirm button -->
                 <form id="bookingForm" method="post" asp-action="ConfirmBooking">
                     @Html.AntiForgeryToken()
                     <input type="hidden" id="hiddenScheduleId" name="ScheduleId" />
                     <input type="hidden" id="hiddenSeats" name="SeatCount" />
+                    <input type="hidden" id="hiddenGcashRef" name="ReferenceNumber" />
+          
                 </form>
                 <button onclick="confirmBooking()"
-                        class="flex-1 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium transition">
+                        class="flex-1 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium transition">
                     Confirm
                 </button>
             </div>
@@ -341,7 +367,7 @@ else
                         </div>
                         <div>
                             <p class="text-xs text-gray-400 font-medium">Total Buses</p>
-                            <p class="text-xl font-bold text-gray-900">@(ViewBag.TotalBuses ?? 0)</p>
+                            <p class="text-xl font-bold text-gray-900">@(ViewBag.BusesCount ?? 0)</p>
                         </div>
                     </div>
 
@@ -354,7 +380,7 @@ else
                         </div>
                         <div>
                             <p class="text-xs text-gray-400 font-medium">Schedules</p>
-                            <p class="text-xl font-bold text-gray-900">@(ViewBag.TotalSchedules ?? 0)</p>
+                            <p class="text-xl font-bold text-gray-900">@(ViewBag.ScheduleCount ?? 0)</p>
                         </div>
                     </div>
 
@@ -367,7 +393,7 @@ else
                         </div>
                         <div>
                             <p class="text-xs text-gray-400 font-medium">Total Bookings</p>
-                            <p class="text-xl font-bold text-gray-900">@(ViewBag.TotalBookings ?? 0)</p>
+                            <p class="text-xl font-bold text-gray-900">@(ViewBag.TicketCount ?? 0)</p>
                         </div>
                     </div>
 
@@ -380,7 +406,7 @@ else
                         </div>
                         <div>
                             <p class="text-xs text-gray-400 font-medium">Registered Users</p>
-                            <p class="text-xl font-bold text-gray-900">@(ViewBag.TotalUsers ?? 0)</p>
+                            <p class="text-xl font-bold text-gray-900">@(ViewBag.UsersCount ?? 0)</p>
                         </div>
                     </div>
 
@@ -458,12 +484,20 @@ else
 
         function confirmBooking() {
             const seats = parseInt(document.getElementById('seatCount').value);
+            const ref = document.getElementById('gcashRef').value;
+              if (ref === "" || ref.length !== 13) {
+                    alert('Please enter a valid 13-digit GCash reference number.');
+                    return;
+             }
+
+
             if (isNaN(seats) || seats < 1) {
                 alert('Please enter a valid number of seats.');
                 return;
             }
              document.getElementById('hiddenScheduleId').value = selectedScheduleId;
              document.getElementById('hiddenSeats').value = seats;
+             document.getElementById('hiddenGcashRef').value = ref;
              document.getElementById('bookingForm').submit();
         }
 

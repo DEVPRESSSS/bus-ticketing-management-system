@@ -21,8 +21,11 @@
                     <th class="text-left px-4 py-3 font-semibold">Ticket Code</th>
                     <th class="text-left px-4 py-3 font-semibold">Passenger</th>
                     <th class="text-left px-4 py-3 font-semibold">Seat</th>
+                    <th class="text-left px-4 py-3 font-semibold">Bus</th>
                     <th class="text-left px-4 py-3 font-semibold">Schedule</th>
-                    <th class="text-left px-4 py-3 font-semibold">Amount Paid</th>
+                    <th class="text-left px-4 py-3 font-semibold">Fare</th>
+                    <th class="text-left px-4 py-3 font-semibold">Payment</th>
+                    <th class="text-left px-4 py-3 font-semibold">PaymentStatus</th>
                     <th class="text-left px-4 py-3 font-semibold">Booked At</th>
                     <th class="text-left px-4 py-3 font-semibold">Status</th>
                     <th class="text-left px-4 py-3 font-semibold">Actions</th>
@@ -36,10 +39,20 @@
                         <td class="px-4 py-3 text-gray-500 font-mono text-xs">@ticket.TicketCode</td>
                         <td class="px-4 py-3 text-gray-800 font-medium">@ticket.ApplicationUser?.FullName</td>
                         <td class="px-4 py-3 text-gray-500">@ticket.Seats?.SeatNumber</td>
+                        <th class="text-left px-4 py-3 font-semibold">@($"{ticket.Schedules?.Buses?.BusName + " - " + ticket.Schedules?.Buses.BusNumber}") </th>
                         <td class="px-4 py-3 text-gray-500 text-xs">
                             @ticket.Schedules?.DepartureTime.ToString("MMM d, yyyy hh:mm tt")
                         </td>
                         <td class="px-4 py-3 text-gray-800 font-semibold">₱@ticket.AmountPaid.ToString("N2")</td>
+                        <td class="px-4 py-3 text-gray-800 font-semibold">@ticket.ReferenceNumber</td>
+                        <td class="px-4 py-3">
+                            <span class="px-2 py-0.5 rounded-full text-xs font-semibold
+                                @(ticket.PaymentStatus == "Paid" ? "bg-green-50 text-green-600 border border-green-200" :
+                                            ticket.PaymentStatus == "Pending" ? "bg-yellow-50 text-yellow-600 border border-yellow-200" :
+                                            "bg-red-50 text-red-600 border border-red-200")">
+                                @ticket.PaymentStatus
+                            </span>
+                        </td>
                         <td class="px-4 py-3 text-gray-400 text-xs">
                             @ticket.BookedAt?.ToString("MMM d, yyyy hh:mm tt")
                         </td>

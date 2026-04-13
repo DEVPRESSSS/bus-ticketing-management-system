@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace BTS.Models.ViewModel
 {
@@ -10,8 +11,11 @@ namespace BTS.Models.ViewModel
         public string?  SeatId { get; set; }
         public int  SeatCount { get; set; }
         public string? ScheduleId { get; set; }
+        [Required]
+        public string? ReferenceNumber { get; set; }
 
         [ValidateNever]
         public List<Schedules>? Schedules { get; set; }
+
     }
 }

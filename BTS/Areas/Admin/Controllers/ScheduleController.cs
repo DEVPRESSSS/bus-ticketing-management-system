@@ -47,7 +47,12 @@ namespace BTS.Areas.Admin.Controllers
             });
             if (scheduleId == null)
             {
-                return View();
+                var obj = new Schedules
+                {
+                    DepartureTime = DateTime.Today,
+                    ArrivalTime = DateTime.Today,
+                };
+                return View(obj);
             }
             else
             {
@@ -59,6 +64,15 @@ namespace BTS.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Upsert(Schedules schedules)
         {
+            if (schedules.DepartureTime < DateTime.Now)
+            {
+                ModelState.AddModelError("DepartureTime", "Departure time cannot be in the past.");
+            }
+
+            if (schedules.ArrivalTime < schedules.DepartureTime)
+            {
+                ModelState.AddModelError("ArrivalTime", "Arrival must be after departure.");
+            }
 
             if (ModelState.IsValid)
             {
@@ -103,6 +117,12 @@ namespace BTS.Areas.Admin.Controllers
             TempData["success"] = "Schedule deleted successfully";
 
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult GetBusSeats(string busId)
+        {
+            var bus = _unitOfWork.Seat.GetAll(u => u.BusId == busId).Count();
+            return Json(bus);
         }
     }
 }

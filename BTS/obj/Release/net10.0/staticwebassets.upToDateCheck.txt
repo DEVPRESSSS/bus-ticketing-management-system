@@ -17,6 +17,7 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\Images\Maya.jpg
 D:\RESUME_PROJECTS\BTS\BTS\wwwroot\css\output.css
 D:\RESUME_PROJECTS\BTS\BTS\wwwroot\css\site.css
 D:\RESUME_PROJECTS\BTS\BTS\wwwroot\favicon.ico
